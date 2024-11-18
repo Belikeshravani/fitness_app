@@ -159,10 +159,37 @@ class _NewMealPageState extends State<NewMealPage> {
                 ),
               ),
               Padding(
+  padding: const EdgeInsets.symmetric(vertical: PaddingManager.p12),
+  child: TextButton(
+    onPressed: () {
+      // Unfocus any text fields to dismiss the keyboard
+      FocusScope.of(context).unfocus();
+      fetchapi(); // Call the API fetch function
+    },
+    style: TextButton.styleFrom(
+      foregroundColor: Colors.white, // Text color when clicked
+      backgroundColor: ColorManager.limerGreen2, // Button background color
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8), // Rounded corners
+      ),
+    ),
+    child: Text(
+      "Add Nutritional Values",
+      style: TextStyle(
+        fontSize: 14.sp, // Small font size
+        color: Colors.black, // Text color
+        fontWeight: FontWeight.w500, // Medium weight
+      ),
+    ),
+  ),
+),
+
+              Padding(
                 padding: const EdgeInsets.only(
                   left: PaddingManager.p28,
                   right: PaddingManager.p28,
-                  top: PaddingManager.p56,
+                  top: PaddingManager.p12,
                   bottom: PaddingManager.p12,
                 ),
                 child: Row(
@@ -209,7 +236,7 @@ class _NewMealPageState extends State<NewMealPage> {
               ),
               LimeGreenRoundedButtonWidget(
                 onTap: () {
-                  fetchapi();
+                  
                   try {
                     consumptionProvider.addNewMeal(
                       title: _mealTitleController.text,

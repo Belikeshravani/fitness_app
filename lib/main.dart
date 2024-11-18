@@ -9,7 +9,7 @@ void main() async {
   // Check if Firebase is already initialized before initializing
   if (Firebase.apps.isEmpty) {
     await Firebase.initializeApp(
-      name: "fitness-app-a2060",
+      name: "fitness-app-2-69c87",
       options: DefaultFirebaseOptions.currentPlatform,
     );
     print("Fitness Project connecteddddd");

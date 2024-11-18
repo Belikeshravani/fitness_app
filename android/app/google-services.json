@@ -1,14 +1,13 @@
 {
   "project_info": {
-    "project_number": "258697946142",
-    "firebase_url": "https://fitness-app-a2060-default-rtdb.firebaseio.com",
-    "project_id": "fitness-app-a2060",
-    "storage_bucket": "fitness-app-a2060.firebasestorage.app"
+    "project_number": "713884072930",
+    "project_id": "fitness-app-2-69c87",
+    "storage_bucket": "fitness-app-2-69c87.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:258697946142:android:56188de5e92fe7e2687a0f",
+        "mobilesdk_app_id": "1:713884072930:android:61f2c3adc4fa2363f2d7bb",
         "android_client_info": {
           "package_name": "com.example.smart_home_app"
         }
@@ -16,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDFC5TEXQYRRMF6Ogrx5wW7mWkfEX1RPOg"
+          "current_key": "AIzaSyDfqOrmxCbV40WTXTptio8tHldqJHxWD1E"
         }
       ],
       "services": {

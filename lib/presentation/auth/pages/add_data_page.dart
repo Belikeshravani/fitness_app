@@ -96,6 +96,7 @@ class _AddDataPageState extends State<AddDataPage> {
                 bmi: homeProvider.usersBMI,
               ),
             );
+            
       } catch (e) {
         rethrow;
       }

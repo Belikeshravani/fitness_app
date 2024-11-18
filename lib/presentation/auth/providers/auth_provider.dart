@@ -137,6 +137,21 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  void _showToast(BuildContext context, String message, {Color? color}) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(
+        message,
+        style: const TextStyle(color: Colors.white),
+      ),
+      backgroundColor: color ?? Colors.black,
+      behavior: SnackBarBehavior.floating,
+      duration: const Duration(seconds: 3),
+    ),
+  );
+}
+
+
   Future<void> signIn({
     required String email,
     required String password,
@@ -158,15 +173,16 @@ class AuthProvider with ChangeNotifier {
         email: email,
         password: password,
       );
-
+  _showToast(context, 'Sign-in successful', color: Colors.green);
       // ignore: use_build_context_synchronously
       Navigator.pop(context);
 
       notifyListeners();
-    } on FirebaseAuthException catch (_) {
+    } on FirebaseAuthException catch (e) {
       Future.delayed(const Duration(seconds: 2)).then(
         (value) {
           Navigator.pop(context);
+           _showToast(context, e.message ?? 'Sign-in failed', color: Colors.red);
           notifyListeners();
         },
       );
@@ -200,11 +216,12 @@ class AuthProvider with ChangeNotifier {
           .collection('users')
           .doc(credential.user!.uid)
           .set({});
-
+ _showToast(context, 'Registration successful', color: Colors.green);
       notifyListeners();
-    } on FirebaseAuthException catch (_) {
+    } on FirebaseAuthException catch (e) {
       Future.delayed(const Duration(seconds: 2)).then((value) {
         Navigator.pop(context);
+         _showToast(context, e.message ?? 'Registration failed', color: Colors.red);
         notifyListeners();
       });
     }
@@ -232,7 +249,7 @@ class AuthProvider with ChangeNotifier {
           .doc(user!.uid)
           .update({
         'email': email,
-        'first name': name,
+        'name': name,
         'surname': surname,
         'age': age,
         'height': height,
