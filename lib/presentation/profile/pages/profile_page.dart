@@ -70,7 +70,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             left: PaddingManager.p28,
                             right: PaddingManager.p28,
                           ),
-                          child: Row(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -104,7 +104,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Positioned(
-                        top: SizeManager.s140.h,
+                        top: SizeManager.s130.h,
                         left: SizeManager.s35.w,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,8 +132,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Positioned(
-                        top: SizeManager.s200.h,
-                        left: SizeManager.s35.w,
+                        top: SizeManager.s70.h,
+                        left: SizeManager.s20.w,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -160,7 +160,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Positioned(
-                        top: SizeManager.s250.h,
+                        top: SizeManager.s180.h,
                         left: SizeManager.s35.w,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,8 +188,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Positioned(
-                        top: SizeManager.s300.h,
-                        left: SizeManager.s35.w,
+                        top: SizeManager.s230.h,
+                        left: SizeManager.s20.w,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -216,7 +216,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Positioned(
-                        top: SizeManager.s350.h,
+                        top: SizeManager.s270.h,
                         left: SizeManager.s35.w,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -244,7 +244,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Positioned(
-                        top: SizeManager.s440.h,
+                        top: SizeManager.s330.h,
                         left: SizeManager.s35.w,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -272,7 +272,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Positioned(
-                        top: SizeManager.s500.h,
+                        top: SizeManager.s400.h,
                         left: SizeManager.s35.w,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -300,7 +300,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Positioned(
-                        top: SizeManager.s500.h,
+                        top: SizeManager.s450.h,
                         left: SizeManager.s35.w,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

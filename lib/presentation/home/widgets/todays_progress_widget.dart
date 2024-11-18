@@ -120,8 +120,8 @@ class TodaysProgressWidget extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(
                       top: PaddingManager.p12,
-                      right: PaddingManager.p20,
-                      left: PaddingManager.p20,
+                      right: PaddingManager.p12,
+                      left: PaddingManager.p12,
                     ),
                     child: CircularPercentIndicator(
                       circularStrokeCap: CircularStrokeCap.round,

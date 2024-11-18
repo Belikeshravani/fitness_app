@@ -240,7 +240,8 @@ class FitnessDataWidget extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              width: (deviceWidth / 3 - 16).w,
+                              margin: EdgeInsets.only(right: 10),
+                              width: (deviceWidth / 3-15 ).w,
                               height: SizeManager.s100.h,
                               decoration: BoxDecoration(
                                 color: ColorManager.black87,
