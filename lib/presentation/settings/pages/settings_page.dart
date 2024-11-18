@@ -59,52 +59,9 @@ class _SettingsPageState extends State<SettingsPage> {
               iconData: Icons.delete_outlined,
               title: StringsManager.deleteAcc,
             ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: PaddingManager.p12,
-                  bottom: PaddingManager.p12,
-                  top: PaddingManager.p12,
-                ),
-                child: Text(
-                  StringsManager.generalSpacer,
-                  style: StyleManager.settingsPageSpacerTextStyle,
-                ),
-              ),
-            ),
-            SettingsPageButton(
-              deviceWidth: deviceWidth,
-              onTap: () {
-                //TODO:
-              },
-              iconData: Icons.nightlight_outlined,
-              title: StringsManager.theme,
-            ),
-            SettingsPageButton(
-              deviceWidth: deviceWidth,
-              onTap: () {
-                //TODO:
-              },
-              iconData: Icons.help_outline,
-              title: StringsManager.support,
-            ),
-            SettingsPageButton(
-              deviceWidth: deviceWidth,
-              onTap: () {
-                //TODO:
-              },
-              iconData: Icons.library_books_outlined,
-              title: StringsManager.termsOfService,
-            ),
-            SettingsPageButton(
-              deviceWidth: deviceWidth,
-              onTap: () {
-                //TODO:
-              },
-              iconData: Icons.person_add_alt_1_outlined,
-              title: StringsManager.inviteFriend,
-            ),
+            
+            
+            
           ],
         ).animate().fadeIn(
               duration: 500.ms,

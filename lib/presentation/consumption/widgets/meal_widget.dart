@@ -77,7 +77,7 @@ class MealWidget extends StatelessWidget {
                   padding: const EdgeInsets.only(
                     top: PaddingManager.p28,
                     left: PaddingManager.p28,
-                    bottom: PaddingManager.p12,
+                    bottom: PaddingManager.p8,
                     right: PaddingManager.p28,
                   ),
                   child: Row(
