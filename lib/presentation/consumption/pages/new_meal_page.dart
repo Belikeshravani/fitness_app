@@ -163,7 +163,7 @@ class _NewMealPageState extends State<NewMealPage> {
   child: TextButton(
     onPressed: () {
       // Unfocus any text fields to dismiss the keyboard
-      FocusScope.of(context).unfocus();
+      FocusScope.of(context). unfocus();
       fetchapi(); // Call the API fetch function
     },
     style: TextButton.styleFrom(
