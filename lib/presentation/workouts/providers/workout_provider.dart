@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_home_app/model/workout_model.dart';
+import 'package:Fitnessio/model/workout_model.dart';
 
 class WorkoutProvider with ChangeNotifier {
   final List<WorkoutModel> _workouts = [];

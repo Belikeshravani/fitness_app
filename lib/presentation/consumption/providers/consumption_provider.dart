@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_home_app/model/meal_model.dart';
-import 'package:smart_home_app/model/water_model.dart';
+import 'package:Fitnessio/model/meal_model.dart';
+import 'package:Fitnessio/model/water_model.dart';
 
 class ConsumptionProvider with ChangeNotifier {
   final List<MealModel> _meals = [];

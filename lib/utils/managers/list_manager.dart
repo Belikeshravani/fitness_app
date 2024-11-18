@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home_app/utils/managers/string_manager.dart';
-import 'package:smart_home_app/utils/managers/style_manager.dart';
+import 'package:Fitnessio/utils/managers/string_manager.dart';
+import 'package:Fitnessio/utils/managers/style_manager.dart';
 
 class ListManager {
   static final List<DropdownMenuItem<String>> exercisesList = [

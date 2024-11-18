@@ -1,6 +1,6 @@
 {
-    "name": "smart_home_app",
-    "short_name": "smart_home_app",
+    "name": "Fitnessio",
+    "short_name": "Fitnessio",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:smart_home_app/presentation/settings/widgets/button_settings.dart';
-import 'package:smart_home_app/utils/managers/string_manager.dart';
-import 'package:smart_home_app/utils/managers/style_manager.dart';
-import 'package:smart_home_app/utils/managers/value_manager.dart';
-import 'package:smart_home_app/utils/router/router.dart';
+import 'package:Fitnessio/presentation/settings/widgets/button_settings.dart';
+import 'package:Fitnessio/utils/managers/string_manager.dart';
+import 'package:Fitnessio/utils/managers/style_manager.dart';
+import 'package:Fitnessio/utils/managers/value_manager.dart';
+import 'package:Fitnessio/utils/router/router.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});

@@ -2,10 +2,10 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_home_app/presentation/profile/providers/profile_provider.dart';
-import 'package:smart_home_app/presentation/profile/widgets/weight_number_column.dart';
-import 'package:smart_home_app/utils/managers/color_manager.dart';
-import 'package:smart_home_app/utils/managers/value_manager.dart';
+import 'package:Fitnessio/presentation/profile/providers/profile_provider.dart';
+import 'package:Fitnessio/presentation/profile/widgets/weight_number_column.dart';
+import 'package:Fitnessio/utils/managers/color_manager.dart';
+import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class WeightLineChart extends StatefulWidget {
   const WeightLineChart({

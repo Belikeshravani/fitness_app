@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_home_app/presentation/auth/pages/add_data_page.dart';
-import 'package:smart_home_app/presentation/auth/providers/auth_provider.dart';
-import 'package:smart_home_app/presentation/main/pages/main_page.dart';
-import 'package:smart_home_app/presentation/auth/pages/login_or_register_page.dart';
+import 'package:Fitnessio/presentation/auth/pages/add_data_page.dart';
+import 'package:Fitnessio/presentation/auth/providers/auth_provider.dart';
+import 'package:Fitnessio/presentation/main/pages/main_page.dart';
+import 'package:Fitnessio/presentation/auth/pages/login_or_register_page.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({Key? key}) : super(key: key);

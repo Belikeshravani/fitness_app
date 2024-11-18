@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_home_app/presentation/workouts/providers/workout_provider.dart';
-import 'package:smart_home_app/utils/managers/color_manager.dart';
-import 'package:smart_home_app/utils/managers/string_manager.dart';
-import 'package:smart_home_app/utils/managers/style_manager.dart';
-import 'package:smart_home_app/utils/managers/value_manager.dart';
+import 'package:Fitnessio/presentation/workouts/providers/workout_provider.dart';
+import 'package:Fitnessio/utils/managers/color_manager.dart';
+import 'package:Fitnessio/utils/managers/string_manager.dart';
+import 'package:Fitnessio/utils/managers/style_manager.dart';
+import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class TodaysProgressWidget extends StatelessWidget {
   const TodaysProgressWidget({

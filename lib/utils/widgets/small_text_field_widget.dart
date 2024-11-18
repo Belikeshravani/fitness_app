@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_home_app/utils/managers/color_manager.dart';
-import 'package:smart_home_app/utils/managers/font_manager.dart';
-import 'package:smart_home_app/utils/managers/value_manager.dart';
+import 'package:Fitnessio/utils/managers/color_manager.dart';
+import 'package:Fitnessio/utils/managers/font_manager.dart';
+import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class SmallTextFieldWidget extends StatelessWidget {
   const SmallTextFieldWidget({

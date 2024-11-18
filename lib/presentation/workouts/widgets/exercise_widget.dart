@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:smart_home_app/utils/managers/color_manager.dart';
-import 'package:smart_home_app/utils/managers/string_manager.dart';
-import 'package:smart_home_app/utils/managers/style_manager.dart';
-import 'package:smart_home_app/utils/managers/value_manager.dart';
+import 'package:Fitnessio/utils/managers/color_manager.dart';
+import 'package:Fitnessio/utils/managers/string_manager.dart';
+import 'package:Fitnessio/utils/managers/style_manager.dart';
+import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class ExerciseWidget extends StatelessWidget {
   const ExerciseWidget({

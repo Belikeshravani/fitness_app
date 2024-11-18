@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_home_app/presentation/auth/providers/auth_provider.dart';
-import 'package:smart_home_app/presentation/settings/providers/settings_provider.dart';
-import 'package:smart_home_app/utils/managers/color_manager.dart';
-import 'package:smart_home_app/utils/managers/string_manager.dart';
-import 'package:smart_home_app/utils/managers/style_manager.dart';
-import 'package:smart_home_app/utils/managers/value_manager.dart';
+import 'package:Fitnessio/presentation/auth/providers/auth_provider.dart';
+import 'package:Fitnessio/presentation/settings/providers/settings_provider.dart';
+import 'package:Fitnessio/utils/managers/color_manager.dart';
+import 'package:Fitnessio/utils/managers/string_manager.dart';
+import 'package:Fitnessio/utils/managers/style_manager.dart';
+import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class SettingsPageAppBarWidget extends StatefulWidget {
   const SettingsPageAppBarWidget({

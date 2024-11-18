@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home_app/utils/widgets/text_field_widget.dart';
-import 'package:smart_home_app/utils/managers/string_manager.dart';
+import 'package:Fitnessio/utils/widgets/text_field_widget.dart';
+import 'package:Fitnessio/utils/managers/string_manager.dart';
 
 class LoginOrRegisterView extends StatelessWidget {
   const LoginOrRegisterView({

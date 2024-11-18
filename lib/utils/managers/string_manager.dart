@@ -38,7 +38,7 @@ class StringsManager {
   static const String genderHint = 'Gender';
   static const String genderManHint = 'MAN';
   static const String genderWomanHint = 'WOMAN';
-  static const String smart_home_appABtitle = 'FITNESS.IO';
+  static const String FitnessioABtitle = 'FITNESS.IO';
   static const String accountSpacer = 'Account';
   static const String generalSpacer = 'General';
   static const String inviteFriend = 'Invite Friends';

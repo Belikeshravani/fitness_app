@@ -5,7 +5,7 @@ Moreover, fitness.io allows you to closely monitor your weight and body circumfe
 By automatically calculating your BMI and BMR based on your measurements and activity levels, it offers personalized guidance tailored to your specific needs.
 
 
-https://github.com/Ilejk/smart_home_app/assets/120920696/049c83c2-cdd8-4280-bb58-e574bca666e1
+https://github.com/Ilejk/Fitnessio/assets/120920696/049c83c2-cdd8-4280-bb58-e574bca666e1
 
 
 

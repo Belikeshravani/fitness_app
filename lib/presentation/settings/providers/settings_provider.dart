@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:smart_home_app/data/db.dart';
-import 'package:smart_home_app/utils/managers/color_manager.dart';
+import 'package:Fitnessio/data/db.dart';
+import 'package:Fitnessio/utils/managers/color_manager.dart';
 
 class SettingsProvider with ChangeNotifier {
   var currentUser = FirebaseAuth.instance.currentUser;

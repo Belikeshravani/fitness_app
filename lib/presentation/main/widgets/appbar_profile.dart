@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:smart_home_app/utils/managers/value_manager.dart';
+import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class ProfilePageAppBarWidget extends StatefulWidget {
   const ProfilePageAppBarWidget({

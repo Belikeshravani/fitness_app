@@ -3,12 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_home_app/presentation/consumption/providers/consumption_provider.dart';
-import 'package:smart_home_app/presentation/home/providers/home_provider.dart';
-import 'package:smart_home_app/utils/managers/color_manager.dart';
-import 'package:smart_home_app/utils/managers/string_manager.dart';
-import 'package:smart_home_app/utils/managers/style_manager.dart';
-import 'package:smart_home_app/utils/managers/value_manager.dart';
+import 'package:Fitnessio/presentation/consumption/providers/consumption_provider.dart';
+import 'package:Fitnessio/presentation/home/providers/home_provider.dart';
+import 'package:Fitnessio/utils/managers/color_manager.dart';
+import 'package:Fitnessio/utils/managers/string_manager.dart';
+import 'package:Fitnessio/utils/managers/style_manager.dart';
+import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class FitnessDataWidget extends StatelessWidget {
   const FitnessDataWidget({
@@ -241,7 +241,7 @@ class FitnessDataWidget extends StatelessWidget {
                             ),
                             Container(
                               margin: EdgeInsets.only(right: 10),
-                              width: (deviceWidth / 3-15 ).w,
+                              width: (deviceWidth / 3 - 15).w,
                               height: SizeManager.s100.h,
                               decoration: BoxDecoration(
                                 color: ColorManager.black87,

@@ -3,15 +3,15 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_home_app/presentation/consumption/providers/consumption_provider.dart';
-import 'package:smart_home_app/presentation/consumption/widgets/new_meal_app_bar.dart';
-import 'package:smart_home_app/utils/managers/asset_manager.dart';
-import 'package:smart_home_app/utils/managers/color_manager.dart';
-import 'package:smart_home_app/utils/managers/string_manager.dart';
-import 'package:smart_home_app/utils/managers/value_manager.dart';
-import 'package:smart_home_app/utils/widgets/lime_green_rounded_button.dart';
-import 'package:smart_home_app/utils/widgets/small_text_field_widget.dart';
-import 'package:smart_home_app/utils/widgets/text_field_underlined.dart';
+import 'package:Fitnessio/presentation/consumption/providers/consumption_provider.dart';
+import 'package:Fitnessio/presentation/consumption/widgets/new_meal_app_bar.dart';
+import 'package:Fitnessio/utils/managers/asset_manager.dart';
+import 'package:Fitnessio/utils/managers/color_manager.dart';
+import 'package:Fitnessio/utils/managers/string_manager.dart';
+import 'package:Fitnessio/utils/managers/value_manager.dart';
+import 'package:Fitnessio/utils/widgets/lime_green_rounded_button.dart';
+import 'package:Fitnessio/utils/widgets/small_text_field_widget.dart';
+import 'package:Fitnessio/utils/widgets/text_field_underlined.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 class NewMealPage extends StatefulWidget {
@@ -52,57 +52,57 @@ class _NewMealPageState extends State<NewMealPage> {
         Provider.of<ConsumptionProvider>(context, listen: false);
 
     //api fetch function
-   void fetchapi() async {
-  if (_mealTitleController.text.isEmpty || _mealAmountController.text.isEmpty) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Please enter both meal name and amount!')),
-    );
-    return;
-  }
+    void fetchapi() async {
+      if (_mealTitleController.text.isEmpty ||
+          _mealAmountController.text.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Please enter both meal name and amount!')),
+        );
+        return;
+      }
 
-  final String mealName = _mealTitleController.text;
-  final String mealAmount = _mealAmountController.text;
+      final String mealName = _mealTitleController.text;
+      final String mealAmount = _mealAmountController.text;
 
-  try {
-    final model = GenerativeModel(
-      model: 'gemini-1.5-flash',
-      apiKey: 'AIzaSyAXczCcaNC6DFktLJz8rZ-jG0wwEdd6ZX8',
-    );
+      try {
+        final model = GenerativeModel(
+          model: 'gemini-1.5-flash',
+          apiKey: 'AIzaSyAXczCcaNC6DFktLJz8rZ-jG0wwEdd6ZX8',
+        );
 
-    final prompt =
-        'Provide nutritional content (kCal, Carbs, Fats, Proteins) for $mealAmount grams of $mealName as a JSON object.If you do not know the nutritional value,just give some random guess,but give the answer and do not write unnecessary information.';
+        final prompt =
+            'Provide nutritional content (kCal, Carbs, Fats, Proteins) for $mealAmount grams of $mealName as a JSON object.If you do not know the nutritional value,just give some random guess,but give the answer and do not write unnecessary information.';
 
-    
-    final response = await model.generateContent([Content.text(prompt)]);
-    final String? responseText = response.text;
+        final response = await model.generateContent([Content.text(prompt)]);
+        final String? responseText = response.text;
 
-    // Clean the response text to extract JSON
-    final cleanedResponse = responseText
-        ?.replaceAll(RegExp(r'^```json'), '')
-        .replaceAll(RegExp(r'```'), '')
-        .trim();
+        // Clean the response text to extract JSON
+        final cleanedResponse = responseText
+            ?.replaceAll(RegExp(r'^```json'), '')
+            .replaceAll(RegExp(r'```'), '')
+            .trim();
 
-    // Parse response JSON
-    final Map<String, dynamic> nutritionData = jsonDecode(cleanedResponse!);
+        // Parse response JSON
+        final Map<String, dynamic> nutritionData = jsonDecode(cleanedResponse!);
 
-    // Update the UI
-    setState(() {
-      _mealCalloriesController.text = nutritionData['kcal'].toString();
-      _mealCarbsController.text = nutritionData['carbs'].toString();
-      _mealFatsController.text = nutritionData['fats'].toString();
-      _mealProteinsController.text = nutritionData['proteins'].toString();
-    });
+        // Update the UI
+        setState(() {
+          _mealCalloriesController.text = nutritionData['kcal'].toString();
+          _mealCarbsController.text = nutritionData['carbs'].toString();
+          _mealFatsController.text = nutritionData['fats'].toString();
+          _mealProteinsController.text = nutritionData['proteins'].toString();
+        });
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Nutritional data fetched successfully!')),
-    );
-  } catch (error) {
-    print('Error fetching nutritional data: $error');
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Failed to fetch nutritional data.')),
-    );
-  }
-}
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Nutritional data fetched successfully!')),
+        );
+      } catch (error) {
+        print('Error fetching nutritional data: $error');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to fetch nutritional data.')),
+        );
+      }
+    }
 
 // final prompt =
 //         'Provide nutritional content (kCal, Carbs, Fats, Proteins) for $mealAmount grams of $mealName as a JSON object.If you do not know the nutritional value,just give some random guess,but give the answer and do not write unnecessary information.';
@@ -159,33 +159,33 @@ class _NewMealPageState extends State<NewMealPage> {
                 ),
               ),
               Padding(
-                
-  padding: const EdgeInsets.symmetric(vertical: PaddingManager.p12),
-  child: TextButton(
-    onPressed: () {
-      // Unfocus any text fields to dismiss the keyboard
-      FocusScope.of(context). unfocus();
-      fetchapi(); // Call the API fetch function
-    },
-    style: TextButton.styleFrom(
-      foregroundColor: Colors.white, // Text color when clicked
-      backgroundColor: ColorManager.limerGreen2, // Button background color
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8), // Rounded corners
-      ),
-    ),
-    child: Text(
-      "Add Nutritional Values",
-      style: TextStyle(
-        fontSize: 14.sp, // Small font size
-        color: Colors.black, // Text color
-        fontWeight: FontWeight.w500, // Medium weight
-      ),
-    ),
-  ),
-),
-
+                padding:
+                    const EdgeInsets.symmetric(vertical: PaddingManager.p12),
+                child: TextButton(
+                  onPressed: () {
+                    // Unfocus any text fields to dismiss the keyboard
+                    FocusScope.of(context).unfocus();
+                    fetchapi(); // Call the API fetch function
+                  },
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white, // Text color when clicked
+                    backgroundColor:
+                        ColorManager.limerGreen2, // Button background color
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8), // Rounded corners
+                    ),
+                  ),
+                  child: Text(
+                    "Add Nutritional Values",
+                    style: TextStyle(
+                      fontSize: 14.sp, // Small font size
+                      color: Colors.black, // Text color
+                      fontWeight: FontWeight.w500, // Medium weight
+                    ),
+                  ),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(
                   left: PaddingManager.p28,
@@ -237,7 +237,6 @@ class _NewMealPageState extends State<NewMealPage> {
               ),
               LimeGreenRoundedButtonWidget(
                 onTap: () {
-                  
                   try {
                     consumptionProvider.addNewMeal(
                       title: _mealTitleController.text,

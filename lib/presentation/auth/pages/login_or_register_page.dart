@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_home_app/presentation/auth/providers/auth_provider.dart';
-import 'package:smart_home_app/presentation/auth/widgets/login_or_register_view.dart';
-import 'package:smart_home_app/utils/managers/asset_manager.dart';
-import 'package:smart_home_app/utils/managers/color_manager.dart';
-import 'package:smart_home_app/utils/managers/string_manager.dart';
-import 'package:smart_home_app/utils/managers/style_manager.dart';
-import 'package:smart_home_app/utils/managers/value_manager.dart';
-import 'package:smart_home_app/utils/router/router.dart';
-import 'package:smart_home_app/utils/widgets/lime_green_rounded_button.dart';
+import 'package:Fitnessio/presentation/auth/providers/auth_provider.dart';
+import 'package:Fitnessio/presentation/auth/widgets/login_or_register_view.dart';
+import 'package:Fitnessio/utils/managers/asset_manager.dart';
+import 'package:Fitnessio/utils/managers/color_manager.dart';
+import 'package:Fitnessio/utils/managers/string_manager.dart';
+import 'package:Fitnessio/utils/managers/style_manager.dart';
+import 'package:Fitnessio/utils/managers/value_manager.dart';
+import 'package:Fitnessio/utils/router/router.dart';
+import 'package:Fitnessio/utils/widgets/lime_green_rounded_button.dart';
 
 enum AuthMode { signUp, signIn }
 
