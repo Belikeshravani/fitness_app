@@ -142,7 +142,7 @@ class FitnessDataWidget extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  StringsManager.kcalConsumption,
+                                  StringsManager.bmr,
                                   style: StyleManager.homePageS18BoldDarkGrey,
                                 ),
                                 Text(

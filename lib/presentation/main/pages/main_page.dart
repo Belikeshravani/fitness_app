@@ -37,8 +37,9 @@ class _MainPageState extends State<MainPage> {
     HomePage(),
     ConsumptionPage(),
     WorkoutPage(),
-    SettingsPage(),
     ProfilePage(),
+    SettingsPage(),
+    
   ];
 
   appBar() {
@@ -54,9 +55,9 @@ class _MainPageState extends State<MainPage> {
       return const ProfilePageAppBarWidget();
     }
   }
-
-  bool get isProfilePage => _currentIndex == 4;
-  bool get isSettingsPage => _currentIndex == 3;
+  
+  bool get isSettingsPage => _currentIndex == 4;
+  bool get isProfilePage => _currentIndex == 3;
   bool get isWorkoutsPage => _currentIndex == 2;
   bool get isConsumptionPage => _currentIndex == 1;
   bool get isHomePage => _currentIndex == 0;
@@ -128,14 +129,15 @@ class _MainPageState extends State<MainPage> {
         color: isWorkoutsPage ? ColorManager.limerGreen2 : ColorManager.grey2,
         size: SizeManager.s28,
       ),
-      Icon(
-        Icons.settings_outlined,
-        color: isSettingsPage ? ColorManager.limerGreen2 : ColorManager.grey2,
-        size: SizeManager.s28,
-      ),
+     
       Icon(
         Icons.person_4_outlined,
         color: isProfilePage ? ColorManager.limerGreen2 : ColorManager.grey2,
+        size: SizeManager.s28,
+      ),
+       Icon(
+        Icons.settings_outlined,
+        color: isSettingsPage ? ColorManager.limerGreen2 : ColorManager.grey2,
         size: SizeManager.s28,
       ),
     ];

@@ -91,6 +91,7 @@ class _NewExercisePageState extends State<NewExercisePage> {
                   ),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton2(
+                    //  barrierColor: ColorManager.,
                       // dropdownMaxHeight: deviceHeight / 2,
                       // dropdownDecoration: BoxDecoration(
                       //   color: ColorManager.darkGrey,

@@ -59,6 +59,7 @@ class _ConsumptionPageState extends State<ConsumptionPage> {
                               fats: meal.fats,
                               carbs: meal.carbs,
                               proteins: meal.proteins,
+                              datetime: meal.dateTime,
                               onPressed: (_) {
                                 setState(
                                   () {

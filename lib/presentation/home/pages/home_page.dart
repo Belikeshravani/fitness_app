@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
             ),
             FitnessDataWidget(),
             HomePageTextSpacerWidget(
-              title: StringsManager.explore,
+              title: StringsManager.benefits,
             ),
             CarouselSliderHomeWidget()
           ],

@@ -6,6 +6,7 @@ import 'package:Fitnessio/utils/managers/color_manager.dart';
 import 'package:Fitnessio/utils/managers/string_manager.dart';
 import 'package:Fitnessio/utils/managers/style_manager.dart';
 import 'package:Fitnessio/utils/managers/value_manager.dart';
+import 'package:intl/intl.dart';
 
 class MealWidget extends StatelessWidget {
   const MealWidget({
@@ -18,6 +19,7 @@ class MealWidget extends StatelessWidget {
     required this.proteins,
     required this.onPressed,
     required this.id,
+    required this.datetime,
   });
 
   final String title;
@@ -28,16 +30,17 @@ class MealWidget extends StatelessWidget {
   final double proteins;
   final Function(BuildContext)? onPressed;
   final String id;
+  final DateTime datetime;
 
   @override
   Widget build(BuildContext context) {
-    final deviceWidth = MediaQuery.of(context).size.width;
+    final formattedDate = DateFormat('MMM dd').format(datetime);
+    final formattedTime = DateFormat('hh:mm a').format(datetime);
 
     return Padding(
-      padding: const EdgeInsets.only(
-        top: PaddingManager.p8,
-        left: PaddingManager.p1,
-        right: PaddingManager.p1,
+      padding: EdgeInsets.symmetric(
+        vertical: PaddingManager.p8.h,
+        horizontal: PaddingManager.p16.w,
       ),
       child: Slidable(
         endActionPane: ActionPane(
@@ -53,113 +56,112 @@ class MealWidget extends StatelessWidget {
           ],
         ),
         child: Container(
-          width: deviceWidth,
-          height: SizeManager.s150.h,
           decoration: BoxDecoration(
             color: ColorManager.black87,
-            border: Border(
-              bottom: BorderSide(
-                color: ColorManager.limerGreen2,
-                width: SizeManager.s1,
-              ),
-            ),
+            border: Border.all(color: ColorManager.limerGreen2, width: 1.w),
+            borderRadius: BorderRadius.circular(10.r),
           ),
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: PaddingManager.p12,
-              right: PaddingManager.p12,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: PaddingManager.p28,
-                    left: PaddingManager.p28,
-                    bottom: PaddingManager.p8,
-                    right: PaddingManager.p28,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+          padding: EdgeInsets.all(PaddingManager.p12.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Title and Date/Time
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Title
+                  Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          right: PaddingManager.p12,
-                        ),
-                        child: Icon(
-                          Icons.done_all_rounded,
-                          color: ColorManager.limerGreen2,
-                        ),
+                      Icon(
+                        Icons.restaurant_menu,
+                        color: ColorManager.limerGreen2,
+                        size: 18.sp,
                       ),
+                      SizedBox(width: 8.w),
                       Text(
                         title,
-                        style: StyleManager.mealWidgetTitleTextStyle,
-                      ),
-                      const Expanded(
-                        child: SizedBox(),
+                        style: StyleManager.mealWidgetTitleTextStyle.copyWith(
+                          fontSize: 14.sp,
+                        ),
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: PaddingManager.p28,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  // Date and Time
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        '🔥${calories.round()} kcal',
-                        style: StyleManager.mealWidgetDataTextStyle,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: PaddingManager.p12,
-                          right: PaddingManager.p12,
-                        ),
-                        child: Container(
-                          width: SizeManager.s10.w,
-                          height: SizeManager.s3.h,
-                          decoration: BoxDecoration(
-                            color: ColorManager.limerGreen2,
-                            borderRadius: BorderRadius.circular(
-                              RadiusManager.r100.r,
-                            ),
-                          ),
+                        formattedDate,
+                        style: StyleManager.mealWidgetDataTextStyle.copyWith(
+                          fontSize: 12.sp,
+                          color: ColorManager.lighGrey,
                         ),
                       ),
                       Text(
-                        '${amount.round()} G',
-                        style: StyleManager.mealWidgetDataTextStyle,
+                        formattedTime,
+                        style: StyleManager.mealWidgetDataTextStyle.copyWith(
+                          fontSize: 12.sp,
+                          color: ColorManager.lighGrey,
+                        ),
                       ),
                     ],
                   ),
-                ),
-                const Expanded(child: SizedBox()),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    PercentValueOfMeal(
-                      value: fats,
-                      amount: amount,
-                      title: StringsManager.fats,
+                ],
+              ),
+              SizedBox(height: 8.h),
+
+              // Calories and Amount
+              Row(
+                children: [
+                  Text(
+                    '🔥 ${calories.round()} kcal',
+                    style: StyleManager.mealWidgetDataTextStyle.copyWith(
+                      fontSize: 13.sp,
                     ),
-                    PercentValueOfMeal(
-                      value: carbs,
-                      amount: amount,
-                      title: StringsManager.carbs,
+                  ),
+                  SizedBox(width: 12.w),
+                  Container(
+                    width: 10.w,
+                    height: 3.h,
+                    decoration: BoxDecoration(
+                      color: ColorManager.limerGreen2,
+                      borderRadius: BorderRadius.circular(10.r),
                     ),
-                    PercentValueOfMeal(
-                      value: proteins,
-                      amount: amount,
-                      title: StringsManager.proteins,
+                  ),
+                  SizedBox(width: 12.w),
+                  Text(
+                    '${amount.round()} g',
+                    style: StyleManager.mealWidgetDataTextStyle.copyWith(
+                      fontSize: 13.sp,
                     ),
-                  ],
-                )
-              ],
-            ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 8.h),
+
+              // Fats, Carbs, Proteins
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  PercentValueOfMeal(
+                    value: fats,
+                    amount: amount,
+                    title: StringsManager.fats,
+                  ),
+                  PercentValueOfMeal(
+                    value: carbs,
+                    amount: amount,
+                    title: StringsManager.carbs,
+                  ),
+                  PercentValueOfMeal(
+                    value: proteins,
+                    amount: amount,
+                    title: StringsManager.proteins,
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

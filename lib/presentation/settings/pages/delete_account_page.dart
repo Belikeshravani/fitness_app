@@ -146,6 +146,7 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
                   bottom: PaddingManager.p12,
                 ),
                 child: TextFieldWidgetUnderLined(
+                  readOnly: false,
                   controller: _emailController,
                   labelHint: StringsManager.emailHint,
                   obscureText: false,
@@ -159,6 +160,7 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
                   bottom: PaddingManager.p12,
                 ),
                 child: TextFieldWidgetUnderLined(
+                  readOnly: false,
                   controller: _passwordController,
                   labelHint: StringsManager.passwordHint,
                   keyboardType: TextInputType.emailAddress,
@@ -167,7 +169,7 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
               ),
               LimeGreenRoundedButtonWidget(
                 onTap: popUp,
-                title: StringsManager.procede,
+                title: StringsManager.proceed,
               )
             ],
           ),

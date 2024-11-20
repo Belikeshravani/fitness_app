@@ -54,7 +54,7 @@ class StringsManager {
   static const String oldEmailHint = 'Old Email';
   static const String newEmailHint = 'New Email';
   static const String deleteAccABtitle = 'DELETE ACCOUNT';
-  static const String procede = 'PROCEDE';
+  static const String proceed = 'PROCEED';
   static const String uSure = 'Are your sure?';
   static const String no = 'NO';
   static const String yes = 'YES';
@@ -63,12 +63,13 @@ class StringsManager {
   static const String welcomeBack = 'Welcome Back';
   static const String todaysProg = 'Today\'s Progress';
   static const String todaysAct = 'Today\'s Activity';
-  static const String explore = 'Explore';
+  static const String benefits = 'Benefits';
   static const String strengh = 'STRENGH';
   static const String yoga = 'YOGA';
   static const String power = 'POWER';
   static const String confidence = 'CONFIDENCE';
   static const String meditation = 'MEDITATION';
+  static const String focus = 'FOCUS';
   static const String mealNameHint = 'Name';
   static const String mealAmountHint = 'Amount';
   static const String mealCaloriesHint = 'kCal';
@@ -87,6 +88,7 @@ class StringsManager {
   static const String activityHint = 'Physical activity';
   static const String enterData = 'Please provide\nfollwing information';
   static const String kcalConsumption = 'Calorie Consumption';
+  static const String bmr = 'BMR';
   static const String kcalPerDay = 'Calories/Day';
   static const String waterHint = 'Water in liters';
   static const String kcal = 'kCal';

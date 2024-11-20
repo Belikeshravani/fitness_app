@@ -59,6 +59,7 @@ class AddDataWidgets extends StatelessWidget {
           bottom: PaddingManager.p12,
         ),
         child: TextFieldWidgetUnderLined(
+          readOnly:false ,
           controller: nameController,
           labelHint: StringsManager.nameHint,
           obscureText: false,
@@ -72,6 +73,7 @@ class AddDataWidgets extends StatelessWidget {
           bottom: PaddingManager.p12,
         ),
         child: TextFieldWidgetUnderLined(
+          readOnly: false,
           controller: surnameController,
           labelHint: StringsManager.surnameHint,
           obscureText: false,
@@ -85,6 +87,7 @@ class AddDataWidgets extends StatelessWidget {
           bottom: PaddingManager.p12,
         ),
         child: TextFieldWidgetUnderLined(
+          readOnly: false,
           controller: ageController,
           labelHint: StringsManager.ageHint,
           obscureText: false,

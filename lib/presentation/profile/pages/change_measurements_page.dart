@@ -372,7 +372,7 @@ class _ChangeMeasurementsPageState extends State<ChangeMeasurementsPage> {
                     (value) => Navigator.of(context).pop(),
                   );
                 },
-                title: StringsManager.procede,
+                title: StringsManager.proceed,
               )
             ],
           ),

@@ -75,6 +75,7 @@ class StyleManager {
     letterSpacing: SizeManager.s1_5,
   );
   static final registerTextfieldTextStyle = TextStyle(
+   // backgroundColor: ColorManager.grey,
     color: ColorManager.limeGreen,
     fontSize: FontSize.s14.sp,
     letterSpacing: SizeManager.s1_5,

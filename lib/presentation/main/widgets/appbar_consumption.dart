@@ -28,7 +28,7 @@ class ConsumptionPageAppBarWidget extends StatelessWidget {
           padding: const EdgeInsets.only(right: PaddingManager.p12),
           child: Container(
             height: SizeManager.s40.h,
-            width: SizeManager.s40.w,
+            width: SizeManager.s40.h,
             decoration: BoxDecoration(
               color: ColorManager.grey3,
               borderRadius: BorderRadius.circular(
@@ -36,6 +36,7 @@ class ConsumptionPageAppBarWidget extends StatelessWidget {
               ),
             ),
             child: IconButton(
+              padding: EdgeInsets.only(bottom: 0),
               splashColor: ColorManager.grey3,
               onPressed: () =>
                   Navigator.of(context).pushNamed(Routes.newMealRoute),

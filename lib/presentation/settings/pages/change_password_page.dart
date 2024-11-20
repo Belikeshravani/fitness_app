@@ -81,6 +81,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   bottom: PaddingManager.p12,
                 ),
                 child: TextFieldWidgetUnderLined(
+                  readOnly: false,
                   controller: _emailController,
                   labelHint: StringsManager.emailHint,
                   obscureText: false,
@@ -94,6 +95,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   bottom: PaddingManager.p12,
                 ),
                 child: TextFieldWidgetUnderLined(
+                  readOnly: false,
                   controller: _oldPasswordController,
                   labelHint: StringsManager.oldPasswordHint,
                   obscureText: true,
@@ -107,6 +109,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   bottom: PaddingManager.p12,
                 ),
                 child: TextFieldWidgetUnderLined(
+                  readOnly: false,
                   controller: _newPasswordController,
                   labelHint: StringsManager.newPasswordHint,
                   obscureText: true,
@@ -115,7 +118,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               ),
               LimeGreenRoundedButtonWidget(
                 onTap: changePassword,
-                title: StringsManager.procede,
+                title: StringsManager.proceed,
               )
             ],
           ),

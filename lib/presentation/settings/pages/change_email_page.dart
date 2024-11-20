@@ -80,6 +80,7 @@ class _ChangeEmailPageState extends State<ChangeEmailPage> {
                   bottom: PaddingManager.p12,
                 ),
                 child: TextFieldWidgetUnderLined(
+                  readOnly: false,
                   controller: _oldEmailController,
                   labelHint: StringsManager.oldEmailHint,
                   obscureText: false,
@@ -93,6 +94,7 @@ class _ChangeEmailPageState extends State<ChangeEmailPage> {
                   bottom: PaddingManager.p12,
                 ),
                 child: TextFieldWidgetUnderLined(
+                  readOnly: false,
                   controller: _newEmailController,
                   labelHint: StringsManager.newEmailHint,
                   obscureText: false,
@@ -106,6 +108,7 @@ class _ChangeEmailPageState extends State<ChangeEmailPage> {
                   bottom: PaddingManager.p12,
                 ),
                 child: TextFieldWidgetUnderLined(
+                  readOnly: false,
                   controller: _passwordController,
                   labelHint: StringsManager.passwordHint,
                   obscureText: true,
@@ -114,7 +117,7 @@ class _ChangeEmailPageState extends State<ChangeEmailPage> {
               ),
               LimeGreenRoundedButtonWidget(
                 onTap: changeEmail,
-                title: StringsManager.procede,
+                title: StringsManager.proceed,
               )
             ],
           ),

@@ -29,6 +29,7 @@ class _NewMealPageState extends State<NewMealPage> {
   final TextEditingController _mealFatsController = TextEditingController();
   final TextEditingController _mealCarbsController = TextEditingController();
   final TextEditingController _mealProteinsController = TextEditingController();
+  final TextEditingController _mealDateController = TextEditingController();
   double valueFats = 0.0;
   double valueCarbs = 0.0;
   double valueProtein = 0.0;
@@ -41,7 +42,22 @@ class _NewMealPageState extends State<NewMealPage> {
     _mealCarbsController.dispose();
     _mealFatsController.dispose();
     _mealProteinsController.dispose();
+    _mealDateController.dispose();
     super.dispose();
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null) {
+      setState(() {
+        _mealDateController.text = "${picked.toLocal()}".split(' ')[0];
+      });
+    }
   }
 
   @override
@@ -71,7 +87,7 @@ class _NewMealPageState extends State<NewMealPage> {
         );
 
         final prompt =
-            'Provide nutritional content (kCal, Carbs, Fats, Proteins) for $mealAmount grams of $mealName as a JSON object.If you do not know the nutritional value,just give some random guess,but give the answer and do not write unnecessary information.';
+            'Provide nutritional content (kCal, Carbs, Fats, Proteins) in double datatype for $mealAmount grams of $mealName as a JSON object.If you do not know the nutritional value,just give some random guess,but give the answer and do not write unnecessary information.And do not give null value for any of the nutritional content';
 
         final response = await model.generateContent([Content.text(prompt)]);
         final String? responseText = response.text;
@@ -85,12 +101,18 @@ class _NewMealPageState extends State<NewMealPage> {
         // Parse response JSON
         final Map<String, dynamic> nutritionData = jsonDecode(cleanedResponse!);
 
+        // Safely assign values with default of 0 if null
+        final double calories = (nutritionData['kcal'] ?? 0).toDouble();
+        final double carbs = (nutritionData['carbs'] ?? 0).toDouble();
+        final double fats = (nutritionData['fats'] ?? 0).toDouble();
+        final double proteins = (nutritionData['proteins'] ?? 0).toDouble();
+
         // Update the UI
         setState(() {
-          _mealCalloriesController.text = nutritionData['kcal'].toString();
-          _mealCarbsController.text = nutritionData['carbs'].toString();
-          _mealFatsController.text = nutritionData['fats'].toString();
-          _mealProteinsController.text = nutritionData['proteins'].toString();
+          _mealCalloriesController.text = calories.toString();
+          _mealCarbsController.text = carbs.toString();
+          _mealFatsController.text = fats.toString();
+          _mealProteinsController.text = proteins.toString();
         });
 
         ScaffoldMessenger.of(context).showSnackBar(
@@ -139,10 +161,32 @@ class _NewMealPageState extends State<NewMealPage> {
                   right: PaddingManager.p28,
                 ),
                 child: TextFieldWidgetUnderLined(
+                  readOnly: false,
                   controller: _mealTitleController,
                   labelHint: StringsManager.mealNameHint,
                   obscureText: false,
                   keyboardType: TextInputType.text,
+                ),
+              ),
+               Padding(
+                padding: const EdgeInsets.only(
+                  left: PaddingManager.p28,
+                  right: PaddingManager.p28,
+                  top: PaddingManager.p12,
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    _selectDate(context); // Show the date picker on tap
+                  },
+                  child: AbsorbPointer(
+                    child: TextFieldWidgetUnderLined(
+                      controller: _mealDateController,
+                      labelHint: "Select Meal Date",
+                      keyboardType: TextInputType.none,
+                      obscureText: false,
+                      readOnly: true,
+                    ),
+                  ),
                 ),
               ),
               Padding(
@@ -152,6 +196,7 @@ class _NewMealPageState extends State<NewMealPage> {
                   top: PaddingManager.p12,
                 ),
                 child: TextFieldWidgetUnderLined(
+                  readOnly: false,
                   controller: _mealAmountController,
                   labelHint: StringsManager.mealAmountHint,
                   keyboardType: TextInputType.number,
@@ -245,7 +290,9 @@ class _NewMealPageState extends State<NewMealPage> {
                       fats: double.parse(_mealFatsController.text),
                       carbs: double.parse(_mealCarbsController.text),
                       proteins: double.parse(_mealProteinsController.text),
-                      dateTime: DateTime.now(),
+                      dateTime: _mealDateController.text.isNotEmpty
+                          ? DateTime.parse(_mealDateController.text)
+                          : DateTime.now(),
                     );
                     Navigator.of(context).pop();
                   } catch (e) {

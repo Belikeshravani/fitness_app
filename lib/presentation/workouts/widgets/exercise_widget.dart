@@ -5,6 +5,7 @@ import 'package:Fitnessio/utils/managers/color_manager.dart';
 import 'package:Fitnessio/utils/managers/string_manager.dart';
 import 'package:Fitnessio/utils/managers/style_manager.dart';
 import 'package:Fitnessio/utils/managers/value_manager.dart';
+import 'package:intl/intl.dart';
 
 class ExerciseWidget extends StatelessWidget {
   const ExerciseWidget({
@@ -15,6 +16,7 @@ class ExerciseWidget extends StatelessWidget {
     required this.onDeleted,
     required this.onFinished,
     required this.id,
+    required this.datetime, // DateTime field
   });
 
   final String name;
@@ -23,15 +25,18 @@ class ExerciseWidget extends StatelessWidget {
   final Function(BuildContext)? onDeleted;
   final Function(BuildContext)? onFinished;
   final String id;
+  final DateTime datetime;
 
   @override
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
+    final formattedDate = DateFormat('MMM dd').format(datetime);
+    final formattedTime = DateFormat('hh:mm a').format(datetime);
+
     return Padding(
-      padding: const EdgeInsets.only(
-        top: PaddingManager.p8,
-        left: PaddingManager.p1,
-        right: PaddingManager.p1,
+      padding: EdgeInsets.symmetric(
+        vertical: PaddingManager.p8.h,
+        horizontal: PaddingManager.p16.w,
       ),
       child: Slidable(
         startActionPane: ActionPane(
@@ -60,85 +65,84 @@ class ExerciseWidget extends StatelessWidget {
         ),
         child: Container(
           width: deviceWidth,
-          height: SizeManager.s100.h,
+          height: 120.h, // Adjusted for responsiveness
           decoration: BoxDecoration(
             color: ColorManager.black87,
-            border: Border(
-              bottom: BorderSide(
-                color: ColorManager.limerGreen2,
-                width: SizeManager.s1,
-              ),
+            borderRadius: BorderRadius.circular(10.r),
+            border: Border.all(
+              color: ColorManager.limerGreen2,
+              width: 1.w,
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(
-              left: PaddingManager.p2,
-              right: PaddingManager.p2,
-            ),
+            padding: EdgeInsets.all(PaddingManager.p12.h),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: PaddingManager.p28,
-                    left: PaddingManager.p28,
-                    bottom: PaddingManager.p12,
-                    right: PaddingManager.p28,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // Exercise Name
+                    Flexible(
+                      child: Text(
                         name,
                         style: StyleManager.exerciseNameTextStyle,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                '${setNumber.round()}',
-                                style: StyleManager
-                                    .exerciseRepAndSetNumberTextStyle,
-                              ),
-                              SizedBox(
-                                width: SizeManager.s3.w,
-                              ),
-                              Text(
-                                StringsManager.setNumberHint,
-                                style:
-                                    StyleManager.exerciseRepAndSetHintTextStyle,
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: SizeManager.s10.h,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                '${repNumber.round()}',
-                                style: StyleManager
-                                    .exerciseRepAndSetNumberTextStyle,
-                              ),
-                              SizedBox(
-                                width: SizeManager.s3.w,
-                              ),
-                              Text(
-                                StringsManager.repNumberHint,
-                                style:
-                                    StyleManager.exerciseRepAndSetHintTextStyle,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                    ),
+                    // Date and Time
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          formattedDate,
+                          style: StyleManager.exerciseRepAndSetHintTextStyle
+                              .copyWith(color: ColorManager.lighGrey),
+                        ),
+                        Text(
+                          formattedTime,
+                          style: StyleManager.exerciseRepAndSetHintTextStyle
+                              .copyWith(color: ColorManager.lighGrey),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: SizeManager.s10.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Set Number
+                    Row(
+                      children: [
+                        Text(
+                          '${setNumber.round()}',
+                          style: StyleManager.exerciseRepAndSetNumberTextStyle,
+                        ),
+                        SizedBox(width: SizeManager.s5.w),
+                        Text(
+                          StringsManager.setNumberHint,
+                          style: StyleManager.exerciseRepAndSetHintTextStyle,
+                        ),
+                      ],
+                    ),
+                    // Rep Number
+                    Row(
+                      children: [
+                        Text(
+                          '${repNumber.round()}',
+                          style: StyleManager.exerciseRepAndSetNumberTextStyle,
+                        ),
+                        SizedBox(width: SizeManager.s5.w),
+                        Text(
+                          StringsManager.repNumberHint,
+                          style: StyleManager.exerciseRepAndSetHintTextStyle,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),

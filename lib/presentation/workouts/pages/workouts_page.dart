@@ -70,6 +70,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                               repNumber: workout.repNumber,
                               setNumber: workout.setNumber,
                               id: workout.id,
+                              datetime: workout.dateTime,
                               onDeleted: (_) {
                                 setState(
                                   () {

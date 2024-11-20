@@ -108,6 +108,7 @@ class _ChangeWeightPageState extends State<ChangeWeightPage> {
               Padding(
                 padding: const EdgeInsets.all(PaddingManager.p28),
                 child: TextFieldWidgetUnderLined(
+                  readOnly: false,
                   controller: _weightController,
                   labelHint: StringsManager.weightHint,
                   obscureText: false,
@@ -116,7 +117,7 @@ class _ChangeWeightPageState extends State<ChangeWeightPage> {
               ),
               LimeGreenRoundedButtonWidget(
                 onTap: changeWeight,
-                title: StringsManager.procede,
+                title: StringsManager.proceed,
               )
             ],
           ),

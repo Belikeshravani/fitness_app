@@ -143,7 +143,7 @@ class _AddDataPageState extends State<AddDataPage> {
                         .pushReplacementNamed(Routes.mainRoute),
                   );
                 },
-                title: StringsManager.procede,
+                title: StringsManager.proceed,
               )
             ],
           ),

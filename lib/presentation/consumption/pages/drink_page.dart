@@ -168,6 +168,7 @@ class _DrinkPageState extends State<DrinkPage> {
                   bottom: PaddingManager.p12,
                 ),
                 child: TextFieldWidgetUnderLined(
+                  readOnly: false,
                   controller: _drinkController,
                   labelHint: StringsManager.waterHint,
                   obscureText: false,

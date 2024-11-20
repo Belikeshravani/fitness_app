@@ -21,26 +21,30 @@ class HomePageAppBarWidget extends StatelessWidget {
         builder: (context, snapshot) {
           return AppBar(
             actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: PaddingManager.p12),
-                child: Container(
-                  height: SizeManager.s40.h,
-                  width: SizeManager.s40.w,
-                  decoration: BoxDecoration(
-                    color: ColorManager.grey3,
-                    borderRadius: BorderRadius.circular(
-                      RadiusManager.r40.r,
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Container(
+                    height: SizeManager.s40.h,
+                    width: SizeManager.s40.h,
+                    decoration: BoxDecoration(
+                      color: ColorManager.grey3,
+                      borderRadius: BorderRadius.circular(
+                        20,
+                      ),
                     ),
-                  ),
-                  child: IconButton(
-                    splashColor: ColorManager.grey3,
-                    onPressed: () {
-                      //TODO:::
-                    },
-                    icon: const Icon(
-                      Icons.notifications_none_sharp,
-                      size: SizeManager.s26,
-                      color: ColorManager.white,
+                    child: IconButton(
+                      padding: EdgeInsets.only(bottom: 0),
+                      alignment: Alignment.center,
+                      splashColor: ColorManager.grey3,
+                      onPressed: () {
+                        //TODO:::
+                      },
+                      icon: const Icon(
+                        Icons.notifications_none_sharp,
+                        size: SizeManager.s26,
+                        color: ColorManager.white,
+                      ),
                     ),
                   ),
                 ),

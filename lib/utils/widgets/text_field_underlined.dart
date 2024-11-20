@@ -10,7 +10,7 @@ class TextFieldWidgetUnderLined extends StatelessWidget {
     required this.controller,
     required this.labelHint,
     required this.obscureText,
-    required this.keyboardType,
+    required this.keyboardType, required bool readOnly,
   }) : super(key: key);
 
   final TextEditingController controller;
