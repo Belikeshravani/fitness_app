@@ -94,31 +94,31 @@ class ConsumptionProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> clearMealsIfDayChanges(DateTime lastDateTime) async {
-    DateTime now = DateTime.now();
+  // Future<void> clearMealsIfDayChanges(DateTime lastDateTime) async {
+  //   DateTime now = DateTime.now();
 
-    if (isLastDateTimeDifferent(now, lastDateTime)) {
-      try {
-        User? user = FirebaseAuth.instance.currentUser;
+  //   if (isLastDateTimeDifferent(now, lastDateTime)) {
+  //     try {
+  //       User? user = FirebaseAuth.instance.currentUser;
 
-        await FirebaseFirestore.instance
-            .collection('meals')
-            .doc(user!.uid)
-            .collection('mealData')
-            .get()
-            .then((querySnapshot) {
-          for (var doc in querySnapshot.docs) {
-            DateTime mealDateTime = (doc['dateTime'] as Timestamp).toDate();
-            if (isInputTimeDifferent(now, mealDateTime)) {
-              doc.reference.delete();
-            }
-          }
-        });
-      } catch (e) {
-        rethrow;
-      }
-    }
-  }
+  //       await FirebaseFirestore.instance
+  //           .collection('meals')
+  //           .doc(user!.uid)
+  //           .collection('mealData')
+  //           .get()
+  //           .then((querySnapshot) {
+  //         for (var doc in querySnapshot.docs) {
+  //           DateTime mealDateTime = (doc['dateTime'] as Timestamp).toDate();
+  //           if (isInputTimeDifferent(now, mealDateTime)) {
+  //             doc.reference.delete();
+  //           }
+  //         }
+  //       });
+  //     } catch (e) {
+  //       rethrow;
+  //     }
+  //   }
+  // }
 
   bool isLastDateTimeDifferent(DateTime now, DateTime lastDateTime) {
     return now.year != lastDateTime.year ||

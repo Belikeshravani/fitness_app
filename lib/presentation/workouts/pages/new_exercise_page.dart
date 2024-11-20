@@ -1,3 +1,4 @@
+import 'package:Fitnessio/utils/widgets/text_field_underlined.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,13 +24,14 @@ class NewExercisePage extends StatefulWidget {
 class _NewExercisePageState extends State<NewExercisePage> {
   final TextEditingController _setNumberController = TextEditingController();
   final TextEditingController _repNumberController = TextEditingController();
-
+final TextEditingController _mealDateController = TextEditingController();
   String? _valueExercise;
 
   @override
   void dispose() {
     _setNumberController.dispose();
     _repNumberController.dispose();
+    _mealDateController.dispose();
 
     super.dispose();
   }
@@ -38,6 +40,20 @@ class _NewExercisePageState extends State<NewExercisePage> {
     if (selectedGenderValue is String) {
       setState(() {
         _valueExercise = selectedGenderValue;
+      });
+    }
+  }
+
+   Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null) {
+      setState(() {
+        _mealDateController.text = "${picked.toLocal()}".split(' ')[0];
       });
     }
   }
@@ -131,6 +147,27 @@ class _NewExercisePageState extends State<NewExercisePage> {
                   ],
                 ),
               ),
+               Padding(
+                padding: const EdgeInsets.only(
+                  left: PaddingManager.p28,
+                  right: PaddingManager.p28,
+                  top: PaddingManager.p12,
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    _selectDate(context); // Show the date picker on tap
+                  },
+                  child: AbsorbPointer(
+                    child: TextFieldWidgetUnderLined(
+                      controller: _mealDateController,
+                      labelHint: "Select Exercise Date",
+                      keyboardType: TextInputType.none,
+                      obscureText: false,
+                      readOnly: true,
+                    ),
+                  ),
+                ),
+              ),
               LimeGreenRoundedButtonWidget(
                 onTap: () {
                   try {
@@ -138,7 +175,9 @@ class _NewExercisePageState extends State<NewExercisePage> {
                       name: _valueExercise!,
                       repNumber: int.parse(_repNumberController.text),
                       setNumber: int.parse(_setNumberController.text),
-                      dateTime: DateTime.now(),
+                      dateTime: _mealDateController.text.isNotEmpty
+                          ? DateTime.parse(_mealDateController.text)
+                          : DateTime.now(),
                     );
                     workoutProvider.getProgressPercent();
                     Navigator.of(context).pop();

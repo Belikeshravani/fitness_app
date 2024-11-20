@@ -83,7 +83,7 @@ class _MainPageState extends State<MainPage> {
         if (now.year > lastMealDateTime.year ||
             now.month > lastMealDateTime.month ||
             now.day > lastMealDateTime.day) {
-          await consumptionProvider.clearMealsIfDayChanges(lastMealDateTime);
+         // await consumptionProvider.clearMealsIfDayChanges(lastMealDateTime);
           await consumptionProvider.fetchAndSetMeals();
         }
       }
