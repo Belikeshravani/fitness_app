@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -29,10 +31,16 @@ class FitnessDataWidget extends StatelessWidget {
               return SpinKitSpinningLines(color: ColorManager.limerGreen2);
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
+            } else if (homeProvider.userData == null ||
+                consumptionProvider.waterADay == null) {
+              return Center(child: Text('Data not available.'));
             } else {
               double bmr = homeProvider.userData['bmr'];
               double bmi = homeProvider.userData['bmi'];
               Color getProgressColor(double bmi) {
+                if (bmi.isNaN || bmi <= 0) {
+                  return ColorManager.grey3; // Fallback for invalid BMI
+                }
                 var isNormalBMI = bmi >= 18.5 && bmi <= 25;
                 var isUnderOrOverWeight =
                     (bmi >= 17 && bmi < 18.5) || (bmi > 25 && bmi <= 30);
@@ -90,7 +98,7 @@ class FitnessDataWidget extends StatelessWidget {
                               circularStrokeCap: CircularStrokeCap.round,
                               radius: RadiusManager.r40.r,
                               lineWidth: SizeManager.s8.w,
-                              percent: bmi / 40,
+                              percent: (bmi > 0) ? bmi / 40 : 0.0,
                               progressColor: getProgressColor(bmi),
                               backgroundColor: ColorManager.grey3,
                               animateFromLastPercent: true,
@@ -241,7 +249,7 @@ class FitnessDataWidget extends StatelessWidget {
                             ),
                             Container(
                               margin: EdgeInsets.only(right: 10),
-                              width: (deviceWidth / 3 ).w,
+                              width: (deviceWidth / 3).w,
                               height: SizeManager.s100.h,
                               decoration: BoxDecoration(
                                 color: ColorManager.black87,

@@ -68,6 +68,64 @@ class _NewMealPageState extends State<NewMealPage> {
         Provider.of<ConsumptionProvider>(context, listen: false);
 
     //api fetch function
+    // void fetchapi() async {
+    //   if (_mealTitleController.text.isEmpty ||
+    //       _mealAmountController.text.isEmpty) {
+    //     ScaffoldMessenger.of(context).showSnackBar(
+    //       SnackBar(content: Text('Please enter both meal name and amount!')),
+    //     );
+    //     return;
+    //   }
+
+    //   final String mealName = _mealTitleController.text;
+    //   final String mealAmount = _mealAmountController.text;
+
+    //   try {
+    //     final model = GenerativeModel(
+    //       model: 'gemini-1.5-flash',
+    //       apiKey: 'AIzaSyAXczCcaNC6DFktLJz8rZ-jG0wwEdd6ZX8',
+    //     );
+
+    //     final prompt =
+    //         'Provide nutritional content (kCal, Carbs, Fats, Proteins) in double datatype for $mealAmount grams of $mealName as a JSON object.If you do not know the nutritional value,just give some random guess,but give the answer and do not write unnecessary information.And do not give null value for any of the nutritional content';
+
+    //     final response = await model.generateContent([Content.text(prompt)]);
+    //     final String? responseText = response.text;
+
+    //     // Clean the response text to extract JSON
+    //     final cleanedResponse = responseText
+    //         ?.replaceAll(RegExp(r'^```json'), '')
+    //         .replaceAll(RegExp(r'```'), '')
+    //         .trim();
+
+    //     // Parse response JSON
+    //     final Map<String, dynamic> nutritionData = jsonDecode(cleanedResponse!);
+
+    //     // Safely assign values with default of 0 if null
+    //     final double calories = (nutritionData['kcal'] ?? 0).toDouble();
+    //     final double carbs = (nutritionData['carbs'] ?? 0).toDouble();
+    //     final double fats = (nutritionData['fats'] ?? 0).toDouble();
+    //     final double proteins = (nutritionData['proteins'] ?? 0).toDouble();
+
+    //     // Update the UI
+    //     setState(() {
+    //       _mealCalloriesController.text = calories.toString();
+    //       _mealCarbsController.text = carbs.toString();
+    //       _mealFatsController.text = fats.toString();
+    //       _mealProteinsController.text = proteins.toString();
+    //     });
+
+    //     ScaffoldMessenger.of(context).showSnackBar(
+    //       SnackBar(content: Text('Nutritional data fetched successfully!')),
+    //     );
+    //   } catch (error) {
+    //     print('Error fetching nutritional data: $error');
+    //     ScaffoldMessenger.of(context).showSnackBar(
+    //       SnackBar(content: Text('Failed to fetch nutritional data.')),
+    //     );
+    //   }
+    // }
+
     void fetchapi() async {
       if (_mealTitleController.text.isEmpty ||
           _mealAmountController.text.isEmpty) {
@@ -80,34 +138,49 @@ class _NewMealPageState extends State<NewMealPage> {
       final String mealName = _mealTitleController.text;
       final String mealAmount = _mealAmountController.text;
 
+      if (double.tryParse(mealAmount) == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Please enter a valid numeric amount!')),
+        );
+        return;
+      }
+
       try {
         final model = GenerativeModel(
           model: 'gemini-1.5-flash',
-          apiKey: 'AIzaSyAXczCcaNC6DFktLJz8rZ-jG0wwEdd6ZX8',
+          apiKey: 'AIzaSyAXczCcaNC6DFktLJz8rZ-jG0wwEdd6ZX8', // Use env variable
         );
 
         final prompt =
-            'Provide nutritional content (kCal, Carbs, Fats, Proteins) in double datatype for $mealAmount grams of $mealName as a JSON object.If you do not know the nutritional value,just give some random guess,but give the answer and do not write unnecessary information.And do not give null value for any of the nutritional content';
+            'Provide nutritional content (kCal, Carbs, Fats, Proteins) in double datatype for $mealAmount grams of $mealName as a JSON object. If you do not know the nutritional value, just give a random guess. Do not write unnecessary information or give null values for any nutritional content.';
 
         final response = await model.generateContent([Content.text(prompt)]);
         final String? responseText = response.text;
 
-        // Clean the response text to extract JSON
+        if (responseText == null || responseText.isEmpty) {
+          throw Exception('Empty response from API');
+        }
+
         final cleanedResponse = responseText
-            ?.replaceAll(RegExp(r'^```json'), '')
+            .replaceAll(RegExp(r'^```json'), '')
             .replaceAll(RegExp(r'```'), '')
             .trim();
 
-        // Parse response JSON
-        final Map<String, dynamic> nutritionData = jsonDecode(cleanedResponse!);
+        late Map<String, dynamic> nutritionData;
+        try {
+          nutritionData = jsonDecode(cleanedResponse);
+        } catch (e) {
+          throw Exception('Invalid JSON response: $cleanedResponse');
+        }
 
-        // Safely assign values with default of 0 if null
-        final double calories = (nutritionData['kcal'] ?? 0).toDouble();
-        final double carbs = (nutritionData['carbs'] ?? 0).toDouble();
-        final double fats = (nutritionData['fats'] ?? 0).toDouble();
-        final double proteins = (nutritionData['proteins'] ?? 0).toDouble();
+        final double calories =
+            (nutritionData['kcal'] as num?)?.toDouble() ?? 0.0;
+        final double carbs =
+            (nutritionData['carbs'] as num?)?.toDouble() ?? 0.0;
+        final double fats = (nutritionData['fats'] as num?)?.toDouble() ?? 0.0;
+        final double proteins =
+            (nutritionData['proteins'] as num?)?.toDouble() ?? 0.0;
 
-        // Update the UI
         setState(() {
           _mealCalloriesController.text = calories.toString();
           _mealCarbsController.text = carbs.toString();
@@ -168,7 +241,7 @@ class _NewMealPageState extends State<NewMealPage> {
                   keyboardType: TextInputType.text,
                 ),
               ),
-               Padding(
+              Padding(
                 padding: const EdgeInsets.only(
                   left: PaddingManager.p28,
                   right: PaddingManager.p28,

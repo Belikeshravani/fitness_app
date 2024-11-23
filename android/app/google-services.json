@@ -7,9 +7,28 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:713884072930:android:61f2c3adc4fa2363f2d7bb",
+        "mobilesdk_app_id": "1:713884072930:android:00c85a1aff190aadf2d7bb",
         "android_client_info": {
           "package_name": "com.example.Fitnessio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfqOrmxCbV40WTXTptio8tHldqJHxWD1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:713884072930:android:61f2c3adc4fa2363f2d7bb",
+        "android_client_info": {
+          "package_name": "com.example.smart_home_app"
         }
       },
       "oauth_client": [],

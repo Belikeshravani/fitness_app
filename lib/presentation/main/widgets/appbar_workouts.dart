@@ -6,8 +6,8 @@ import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class WorkoutsPageAppBarWidget extends StatelessWidget {
   const WorkoutsPageAppBarWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

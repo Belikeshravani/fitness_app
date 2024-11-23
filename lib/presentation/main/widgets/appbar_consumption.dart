@@ -9,8 +9,8 @@ import 'package:Fitnessio/utils/router/router.dart';
 
 class ConsumptionPageAppBarWidget extends StatelessWidget {
   const ConsumptionPageAppBarWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

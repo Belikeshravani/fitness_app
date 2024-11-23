@@ -6,12 +6,12 @@ import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class SettingsPageButton extends StatelessWidget {
   const SettingsPageButton({
-    Key? key,
+    super.key,
     required this.deviceWidth,
     required this.onTap,
     required this.iconData,
     required this.title,
-  }) : super(key: key);
+  });
 
   final double deviceWidth;
   final VoidCallback onTap;

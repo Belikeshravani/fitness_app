@@ -11,8 +11,8 @@ import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class SettingsPageAppBarWidget extends StatefulWidget {
   const SettingsPageAppBarWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<SettingsPageAppBarWidget> createState() =>

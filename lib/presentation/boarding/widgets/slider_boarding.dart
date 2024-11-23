@@ -7,8 +7,8 @@ import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class SliderBoardingWidget extends StatelessWidget {
   const SliderBoardingWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,9 @@ class SliderBoardingWidget extends StatelessWidget {
         innerColor: ColorManager.limeGreen,
         sliderButtonIcon: const Icon(Icons.double_arrow_sharp),
         text: StringsManager.swipeToPrc,
-        onSubmit: () {
+        onSubmit: () async {
+          await Future.delayed(const Duration(milliseconds: 500));
+          // ignore: use_build_context_synchronously
           Navigator.of(context).pushReplacementNamed(Routes.authRoute);
         },
       ),

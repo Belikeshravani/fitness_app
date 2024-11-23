@@ -4,8 +4,8 @@ import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class ProfilePageAppBarWidget extends StatefulWidget {
   const ProfilePageAppBarWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<ProfilePageAppBarWidget> createState() =>

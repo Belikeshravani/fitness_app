@@ -6,7 +6,7 @@ import 'package:Fitnessio/presentation/main/pages/main_page.dart';
 import 'package:Fitnessio/presentation/auth/pages/login_or_register_page.dart';
 
 class AuthPage extends StatelessWidget {
-  const AuthPage({Key? key}) : super(key: key);
+  const AuthPage({super.key});
 
   @override
   Widget build(BuildContext context) {

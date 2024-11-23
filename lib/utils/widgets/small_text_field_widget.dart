@@ -6,12 +6,12 @@ import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class SmallTextFieldWidget extends StatelessWidget {
   const SmallTextFieldWidget({
-    Key? key,
+    super.key,
     required this.controller,
     required this.labelHint,
     required this.obscureText,
     required this.keyboardType,
-  }) : super(key: key);
+  });
 
   final TextEditingController controller;
   final bool obscureText;

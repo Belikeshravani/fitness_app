@@ -10,8 +10,8 @@ import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class HomePageAppBarWidget extends StatelessWidget {
   const HomePageAppBarWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

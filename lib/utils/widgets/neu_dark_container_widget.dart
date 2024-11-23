@@ -4,12 +4,12 @@ import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class NeuButton extends StatelessWidget {
   const NeuButton({
-    Key? key,
+    super.key,
     required this.width,
     required this.height,
     required this.radius,
     required this.child,
-  }) : super(key: key);
+  });
 
   final double width;
   final double height;

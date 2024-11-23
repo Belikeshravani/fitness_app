@@ -6,12 +6,12 @@ import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class TextFieldWidgetUnderLined extends StatelessWidget {
   const TextFieldWidgetUnderLined({
-    Key? key,
+    super.key,
     required this.controller,
     required this.labelHint,
     required this.obscureText,
     required this.keyboardType, required bool readOnly,
-  }) : super(key: key);
+  });
 
   final TextEditingController controller;
   final bool obscureText;

@@ -4,12 +4,12 @@ import 'package:Fitnessio/utils/managers/string_manager.dart';
 
 class LoginOrRegisterView extends StatelessWidget {
   const LoginOrRegisterView({
-    Key? key,
+    super.key,
     required this.emailController,
     required this.passwordController,
     required this.isRegisterView,
     required this.repeatPasswordController,
-  }) : super(key: key);
+  });
 
   final TextEditingController emailController;
   final TextEditingController passwordController;

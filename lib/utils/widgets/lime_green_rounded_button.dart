@@ -5,10 +5,10 @@ import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class LimeGreenRoundedButtonWidget extends StatelessWidget {
   const LimeGreenRoundedButtonWidget({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.title,
-  }) : super(key: key);
+  });
 
   final VoidCallback onTap;
   final String title;

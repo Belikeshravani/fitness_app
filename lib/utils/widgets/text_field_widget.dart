@@ -6,12 +6,12 @@ import 'package:Fitnessio/utils/widgets/neu_dark_container_widget.dart';
 
 class TextFieldWidget extends StatelessWidget {
   const TextFieldWidget({
-    Key? key,
+    super.key,
     required this.controller,
     required this.labelHint,
     required this.obscureText,
     required this.keyboardType,
-  }) : super(key: key);
+  });
 
   final TextEditingController controller;
   final bool obscureText;

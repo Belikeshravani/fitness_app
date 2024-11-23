@@ -6,8 +6,8 @@ import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 class DeleteAccountPageAppBar extends StatelessWidget {
   const DeleteAccountPageAppBar({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

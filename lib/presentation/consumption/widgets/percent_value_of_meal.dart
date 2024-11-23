@@ -46,7 +46,8 @@ class PercentValueOfMeal extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                '${value.round()}g',
+                // '${value.round()}g',
+                '${value.toStringAsFixed(1)}g',
                 style: StyleManager.percentValueOfMealTextStyle,
               ),
               Padding(

@@ -1,28 +1,17 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
-import 'package:Fitnessio/presentation/workouts/providers/workout_provider.dart';
-import 'package:Fitnessio/presentation/workouts/widgets/workouts_app_bar.dart';
-import 'package:Fitnessio/utils/managers/asset_manager.dart';
 import 'package:Fitnessio/utils/managers/color_manager.dart';
-import 'package:Fitnessio/utils/managers/list_manager.dart';
 import 'package:Fitnessio/utils/managers/string_manager.dart';
 import 'package:Fitnessio/utils/managers/style_manager.dart';
 import 'package:Fitnessio/utils/managers/value_manager.dart';
-import 'package:Fitnessio/utils/widgets/lime_green_rounded_button.dart';
-import 'package:Fitnessio/utils/widgets/small_text_field_widget.dart';
 import 'package:Fitnessio/utils/widgets/small_text_field_widget.dart';
 import 'package:Fitnessio/utils/widgets/text_field_underlined.dart';
-import 'package:Fitnessio/utils/managers/color_manager.dart';
-import 'package:Fitnessio/utils/managers/string_manager.dart';
-import 'package:Fitnessio/utils/managers/style_manager.dart';
-import 'package:Fitnessio/utils/managers/value_manager.dart';
 
 // ignore: must_be_immutable
 class AddDataWidgets extends StatelessWidget {
   AddDataWidgets({
-    Key? key,
+    super.key,
     required this.ageController,
     required this.heightController,
     required this.weightController,
@@ -34,7 +23,7 @@ class AddDataWidgets extends StatelessWidget {
     required this.surnameController,
     required this.onChangedGoal,
     required this.valueGoal,
-  }) : super(key: key);
+  });
 
   final TextEditingController ageController;
   final TextEditingController heightController;
@@ -59,7 +48,7 @@ class AddDataWidgets extends StatelessWidget {
           bottom: PaddingManager.p12,
         ),
         child: TextFieldWidgetUnderLined(
-          readOnly:false ,
+          readOnly: false,
           controller: nameController,
           labelHint: StringsManager.nameHint,
           obscureText: false,
