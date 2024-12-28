@@ -1,3 +1,4 @@
+import 'package:Fitnessio/presentation/consumption/pages/prevMeal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
@@ -77,18 +78,37 @@ class _ConsumptionPageState extends State<ConsumptionPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(PaddingManager.p12),
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: FloatingActionButton(
-                        backgroundColor: ColorManager.limerGreen2,
-                        child: const Icon(
-                          Icons.water_drop_outlined,
-                          color: ColorManager.darkGrey,
-                          size: SizeManager.s28,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        FloatingActionButton(
+                          backgroundColor: ColorManager.darkGrey,
+                          child: const Icon(
+                            Icons.history,
+                            color: ColorManager.white2,
+                            size: SizeManager.s28,
+                          ),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) {
+                                return PreviousMealsPage(); // Return the widget here
+                              },
+                            ));
+                          },
                         ),
-                        onPressed: () => Navigator.of(context)
-                            .pushNamed(Routes.addWaterRoute),
-                      ),
+                        const SizedBox(height: SizeManager.s16),
+                        FloatingActionButton(
+                          backgroundColor: ColorManager.limerGreen2,
+                          child: const Icon(
+                            Icons.water_drop_outlined,
+                            color: ColorManager.darkGrey,
+                            size: SizeManager.s28,
+                          ),
+                          onPressed: () => Navigator.of(context)
+                              .pushNamed(Routes.addWaterRoute),
+                        ),
+                      ],
                     ),
                   )
                 ],

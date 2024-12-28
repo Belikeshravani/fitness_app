@@ -1,3 +1,4 @@
+import 'package:Fitnessio/presentation/main/pages/main_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -175,8 +176,9 @@ class AuthProvider with ChangeNotifier {
       _showToast(context, 'Sign-in successful', color: Colors.green);
       // ignore: use_build_context_synchronously
       Navigator.pop(context);
-
       notifyListeners();
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MainPage()));
     } on FirebaseAuthException catch (e) {
       Future.delayed(const Duration(seconds: 2)).then(
         (value) {

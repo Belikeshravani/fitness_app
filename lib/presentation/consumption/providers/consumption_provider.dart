@@ -86,6 +86,53 @@ class ConsumptionProvider with ChangeNotifier {
     }
   }
 
+  Future<List<MealModel>> fetchPreviousMeals() async {
+  User? user = FirebaseAuth.instance.currentUser;
+
+  try {
+    // Get today's date at midnight
+    DateTime today = DateTime.now();
+    DateTime todayMidnight = DateTime(today.year, today.month, today.day);
+
+    // Query Firestore for meals before today
+    final mealsSnapshot = await FirebaseFirestore.instance
+        .collection('meals')
+        .doc(user!.uid)
+        .collection('mealData')
+        .where('dateTime', isLessThan: todayMidnight)
+        .get();
+
+    // Parse the fetched data into a list of MealModel objects
+    final List<MealModel> previousMeals = [];
+    for (var doc in mealsSnapshot.docs) {
+      final mealData = doc.data();
+      previousMeals.add(MealModel(
+        id: doc.id,
+        title: mealData['title'],
+        amount: mealData['amount'],
+        calories: mealData['calories'],
+        fats: mealData['fats'],
+        carbs: mealData['carbs'],
+        proteins: mealData['proteins'],
+        dateTime: (mealData['dateTime'] as Timestamp).toDate(),
+      ));
+    }
+
+    return previousMeals;
+  } catch (e) {
+    rethrow;
+  }
+}
+
+ List<MealModel> get previousMeals {
+    return _meals.where((meal) {
+      DateTime today = DateTime.now();
+      DateTime todayMidnight = DateTime(today.year, today.month, today.day);
+      return meal.dateTime.isBefore(todayMidnight);
+    }).toList();
+  }
+
+
   getkCal() async {
     kCalaDay = 0.0;
     for (var meal in _meals) {

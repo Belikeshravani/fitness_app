@@ -7,6 +7,7 @@ class WorkoutProvider with ChangeNotifier {
   final List<WorkoutModel> _workouts = [];
   final List<WorkoutModel> _finishedWorkouts = [];
   final List<WorkoutModel> _allWorkouts = [];
+  final List<WorkoutModel> _prevWorkouts = [];
   double? progressPercent;
   int? exercisesLeft;
   double? shownPercent;
@@ -21,6 +22,11 @@ class WorkoutProvider with ChangeNotifier {
 
   List<WorkoutModel> get allWorkouts {
     return [..._allWorkouts];
+  }
+
+  List<WorkoutModel> get prevWorkouts{
+    return [..._prevWorkouts];
+    
   }
 
   Future<void> getProgressPercent() async {
@@ -142,6 +148,45 @@ class WorkoutProvider with ChangeNotifier {
       rethrow;
     }
   }
+
+  Future<List<WorkoutModel>> fetchPreviousDaysWorkouts() async {
+  try {
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      throw FirebaseAuthException(
+        code: 'USER_NOT_FOUND',
+        message: 'No authenticated user found.',
+      );
+    }
+
+    DateTime today = DateTime.now();
+    DateTime startOfToday = DateTime(today.year, today.month, today.day);
+
+    final previousWorkoutsSnapshot = await FirebaseFirestore.instance
+        .collection('allWorkouts')
+        .doc(user.uid)
+        .collection('allWorkoutsData')
+        .where('dateTime', isLessThan: Timestamp.fromDate(startOfToday))
+        .get();
+
+    List<WorkoutModel> previousWorkouts = previousWorkoutsSnapshot.docs.map((doc) {
+      final data = doc.data();
+      return WorkoutModel(
+        id: doc.id,
+        name: data['name'],
+        repNumber: data['repNumber'],
+        setNumber: data['setNumber'],
+        dateTime: (data['dateTime'] as Timestamp).toDate(),
+      );
+    }).toList();
+
+    return previousWorkouts;
+  } catch (e) {
+    rethrow;
+  }
+}
+
 
   Future<void> clearWorkoutsIfDayChanges(DateTime lastDateTime) async {
     DateTime now = DateTime.now();
