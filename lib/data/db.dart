@@ -4,6 +4,8 @@ class DataBase {
   final String uid;
 
   DataBase(this.uid);
+  final CollectionReference trainerCollection =
+      FirebaseFirestore.instance.collection('trainers');
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
   final CollectionReference mealCollection =

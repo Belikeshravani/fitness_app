@@ -1,31 +1,31 @@
-import 'package:Fitnessio/roles_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
-import 'package:Fitnessio/presentation/auth/providers/auth_provider.dart';
 import 'package:Fitnessio/presentation/settings/providers/settings_provider.dart';
+import 'package:Fitnessio/roles_page.dart';
+import 'package:Fitnessio/trainer/auth/provider/auth_provider_trainer.dart';
 import 'package:Fitnessio/utils/managers/color_manager.dart';
 import 'package:Fitnessio/utils/managers/string_manager.dart';
 import 'package:Fitnessio/utils/managers/style_manager.dart';
 import 'package:Fitnessio/utils/managers/value_manager.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
-class SettingsPageAppBarWidget extends StatefulWidget {
-  const SettingsPageAppBarWidget({
-    super.key,
-  });
+class HomePageAppbar extends StatefulWidget {
+  const HomePageAppbar({super.key});
 
   @override
-  State<SettingsPageAppBarWidget> createState() =>
-      _SettingsPageAppBarWidgetState();
+  State<HomePageAppbar> createState() => _HomePageAppbarState();
 }
 
-class _SettingsPageAppBarWidgetState extends State<SettingsPageAppBarWidget> {
+class _HomePageAppbarState extends State<HomePageAppbar> {
+
+
+  
   @override
   Widget build(BuildContext context) {
     final settingsProvider =
         Provider.of<SettingsProvider>(context, listen: false);
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final authProvider = Provider.of<AuthProviderTrainer>(context, listen: false);
     Future<void> signOut(
         SettingsProvider settingsProvider, BuildContext context) async {
       await settingsProvider.signOut(context: context);
@@ -41,7 +41,7 @@ class _SettingsPageAppBarWidgetState extends State<SettingsPageAppBarWidget> {
       automaticallyImplyLeading: false,
       elevation: SizeManager.s0,
       title: Text(
-        StringsManager.settingsABtitle,
+        "",
         style: StyleManager.appbarTitleTextStyle,
       ),
       actions: [

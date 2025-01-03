@@ -22,7 +22,8 @@ class SliderBoardingWidget extends StatelessWidget {
         onSubmit: () async {
           await Future.delayed(const Duration(milliseconds: 500));
           // ignore: use_build_context_synchronously
-          Navigator.of(context).pushReplacementNamed(Routes.authRoute);
+          
+           Navigator.of(context).pushReplacementNamed(Routes.authRoute);
         },
       ),
     );

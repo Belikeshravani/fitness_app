@@ -38,6 +38,7 @@ class StringsManager {
   static const String genderHint = 'Gender';
   static const String genderManHint = 'MAN';
   static const String genderWomanHint = 'WOMAN';
+  static const String expHint="Experience in Years";
   static const String FitnessioABtitle = 'FITNESS.IO';
   static const String accountSpacer = 'Account';
   static const String generalSpacer = 'General';
@@ -211,4 +212,6 @@ class StringsManager {
   static const String declineBenchPressBarBell = 'Decline Bench Press(Barbell)';
   static const String declineBenchPressDumBell = 'Decline Bench Press(Dumbell)';
   static const String declineBenchPressMachine = 'Decline Bench Press(Machine)';
+
+  
 }

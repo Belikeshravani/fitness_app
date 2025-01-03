@@ -1,3 +1,5 @@
+import 'package:Fitnessio/trainer/auth/provider/auth_provider_trainer.dart';
+import 'package:Fitnessio/trainer/home/provider/trainer_home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +28,12 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+         ChangeNotifierProvider.value(
+          value: TrainerHomeProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: AuthProviderTrainer(),
+        ),
         ChangeNotifierProvider.value(
           value: AuthProvider(),
         ),
