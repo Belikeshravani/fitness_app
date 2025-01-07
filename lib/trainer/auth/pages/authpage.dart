@@ -20,9 +20,11 @@ class AuthPage extends StatelessWidget {
           var isAddDataMode = user != null && hasAgeParameter == false;
           if (isRegisteredUser) {
             return const MainPage();
-          } else if (isAddDataMode) {
-            return const AddDataPage();
-          } else {
+          } 
+          // else if (isAddDataMode) {
+          //   return const AddDataPage();
+          // }
+           else {
             return RoleSelectionPage();
             //return const LoginPage();
           }

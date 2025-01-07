@@ -21,11 +21,13 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _trainerEmailController = TextEditingController(); // New Controller
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _trainerEmailController.dispose(); // Dispose the new controller
     super.dispose();
   }
 
@@ -35,6 +37,7 @@ class _LoginPageState extends State<LoginPage> {
       await authProvider.signIn(
         email: _emailController.text,
         password: _passwordController.text,
+        trainerEmail: _trainerEmailController.text, // Pass trainer email
         context: context,
       );
     } catch (e) {
@@ -70,6 +73,12 @@ class _LoginPageState extends State<LoginPage> {
                     labelText: "Password",
                   ),
                 ),
+                TextField(
+                  controller: _trainerEmailController, // New Trainer Email Field
+                  decoration: InputDecoration(
+                    labelText: "Trainer Email",
+                  ),
+                ),
                 Align(
                   alignment: Alignment.centerRight,
                   child: GestureDetector(
@@ -86,24 +95,6 @@ class _LoginPageState extends State<LoginPage> {
                 LimeGreenRoundedButtonWidget(
                   onTap: () => _signIn(context),
                   title: StringsManager.signIn,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      StringsManager.dontHaveAcc,
-                      style: StyleManager.loginPageSubTextTextStyle,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pushNamed(Routes.registerRoute);
-                      },
-                      child: Text(
-                        StringsManager.signUp,
-                        style: StyleManager.loginPageSubButtonSmallTextStyle,
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ).animate().fadeIn(duration: 500.ms),

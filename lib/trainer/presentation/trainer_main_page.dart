@@ -1,3 +1,4 @@
+import 'package:Fitnessio/presentation/auth/pages/register_page.dart';
 import 'package:Fitnessio/presentation/main/widgets/appbar_home.dart';
 import 'package:Fitnessio/trainer/auth/provider/auth_provider_trainer.dart';
 import 'package:Fitnessio/trainer/home/provider/trainer_home_provider.dart';
@@ -24,12 +25,13 @@ class _TrainerMainPageState extends State<TrainerMainPage> {
   @override
   void initState() {
     super.initState();
-    
   }
 
   @override
   Widget build(BuildContext context) {
     User? user = Provider.of<AuthProviderTrainer>(context).user;
+    print("email at main page");
+    print(user!.email);
     TrainerHomeProvider trainerHomeProvider =
         Provider.of<TrainerHomeProvider>(context);
     trainerHomeProvider.fetchTrainerData();
@@ -63,9 +65,9 @@ class _TrainerMainPageState extends State<TrainerMainPage> {
           children: [
             // Welcome Message
             Text(
-                    'Welcome ${trainerHomeProvider.userData['name']} ${trainerHomeProvider.userData['surname']}!',
-                    style: StyleManager.homeTitleDataTextStyle,
-                  ),
+              'Welcome ${trainerHomeProvider.userData['name']} ${trainerHomeProvider.userData['surname']}!',
+              style: StyleManager.homeTitleDataTextStyle,
+            ),
             const SizedBox(height: 10),
 
             // Search Bar
@@ -128,6 +130,8 @@ class _TrainerMainPageState extends State<TrainerMainPage> {
         backgroundColor: Colors.blue,
         onPressed: () {
           // Navigate to Add Trainee Page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => RegisterPage()));
         },
         child: const Icon(Icons.add, color: Colors.white),
       ),

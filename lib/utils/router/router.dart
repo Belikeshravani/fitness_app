@@ -1,3 +1,4 @@
+import 'package:Fitnessio/presentation/auth/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:Fitnessio/presentation/auth/pages/add_data_page.dart';
 import 'package:Fitnessio/presentation/auth/pages/auth_page.dart';
@@ -57,8 +58,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const DeleteAccountPage());
       case Routes.newMealRoute:
         return MaterialPageRoute(builder: (_) => const NewMealPage());
-      case Routes.addDataRoute:
-        return MaterialPageRoute(builder: (_) => const AddDataPage());
+      // case Routes.addDataRoute:
+      //   return MaterialPageRoute(builder: (_) => const AddDataPage());
       case Routes.addWaterRoute:
         return MaterialPageRoute(builder: (_) => const DrinkPage());
       case Routes.addNewExerciseRoute:

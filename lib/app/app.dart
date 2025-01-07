@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
           value: AuthProviderTrainer(),
         ),
         ChangeNotifierProvider.value(
-          value: AuthProvider(),
+          value: AuthProvider(trainerEmail: ''),
         ),
         ChangeNotifierProvider.value(
           value: SettingsProvider(),

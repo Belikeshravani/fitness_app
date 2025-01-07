@@ -20,8 +20,8 @@ class AuthProviderTrainer with ChangeNotifier {
       _trainer = user;
       if (_trainer != null) {
         FirebaseFirestore.instance
-            .collection('trainer')
-            .doc(_trainer!.uid)
+            .collection('trainers')
+            .doc(_trainer!.email)
             .get()
             .then((docSnapshot) {
           _hasAgeParameter =
@@ -44,8 +44,8 @@ class AuthProviderTrainer with ChangeNotifier {
       _trainer = user;
       if (_trainer != null) {
         FirebaseFirestore.instance
-            .collection('trainer')
-            .doc(_trainer!.uid)
+            .collection('trainers')
+            .doc(_trainer!.email)
             .get()
             .then((docSnapshot) {
           _hasAgeParameter =
@@ -217,8 +217,8 @@ class AuthProviderTrainer with ChangeNotifier {
       // ignore: use_build_context_synchronously
       Navigator.pop(context);
       await FirebaseFirestore.instance
-          .collection('trainer')
-          .doc(credential.user!.uid)
+          .collection('trainers')
+          .doc(user!.email)
           .set({});
       _showToast(context, 'Registration successful', color: Colors.green);
       
@@ -251,8 +251,8 @@ class AuthProviderTrainer with ChangeNotifier {
       User? user = FirebaseAuth.instance.currentUser;
 
       await FirebaseFirestore.instance
-          .collection('trainer')
-          .doc(user!.uid)
+          .collection('trainers')
+          .doc(user!.email)
           .update({
         'email': email,
         'name': name,

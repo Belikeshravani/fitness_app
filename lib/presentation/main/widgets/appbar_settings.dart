@@ -26,14 +26,29 @@ class _SettingsPageAppBarWidgetState extends State<SettingsPageAppBarWidget> {
     final settingsProvider =
         Provider.of<SettingsProvider>(context, listen: false);
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    Future<void> signOut(
-        SettingsProvider settingsProvider, BuildContext context) async {
-      await settingsProvider.signOut(context: context);
-      authProvider.callAuth();
-      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
-        return const RoleSelectionPage();
-      }), (route) => false);
-    }
+   Future<void> signOut(SettingsProvider settingsProvider, BuildContext context) async {
+  await settingsProvider.signOut(context: context);
+  
+  // Get the email and password from user input or from your provider
+  String email = 'user@example.com';  // Replace with actual email
+  String password = 'userpassword';   // Replace with actual password
+
+  // Call authProvider.callAuth with the required arguments
+  await authProvider.callAuth(
+    email: email,
+    password: password,
+    context: context,
+  );
+  
+  // After signing out, navigate to RoleSelectionPage
+  Navigator.pushAndRemoveUntil(
+    context,
+    MaterialPageRoute(builder: (context) {
+      return const RoleSelectionPage();
+    }),
+    (route) => false,
+  );
+}
 
     return AppBar(
       backgroundColor: Colors.transparent,

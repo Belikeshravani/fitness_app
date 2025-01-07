@@ -1,6 +1,7 @@
 import 'package:Fitnessio/trainer/auth/provider/auth_provider_trainer.dart';
 import 'package:Fitnessio/trainer/home/provider/trainer_home_provider.dart';
 import 'package:Fitnessio/trainer/home/widgets/add_trainer_data_widgets.dart';
+import 'package:Fitnessio/trainer/presentation/trainer_main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -104,8 +105,7 @@ class _AddTrainerDataPageState extends State<AddTrainerDataPage> {
               LimeGreenRoundedButtonWidget(
                 onTap: () {
                   addUserData().then(
-                    (value) => Navigator.of(context)
-                        .pushReplacementNamed(Routes.mainRoute),
+                    (value) => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>TrainerMainPage()), (route) => false),
                   );
                 },
                 title: StringsManager.proceed,

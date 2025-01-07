@@ -1,3 +1,6 @@
+import 'package:Fitnessio/presentation/auth/providers/auth_provider.dart' as fitnessio;
+import 'package:firebase_auth_platform_interface/src/auth_provider.dart' as firebase;
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +20,15 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  
+ String getTrainerEmail() {
+  final User? currentUser = FirebaseAuth.instance.currentUser;
+  if (currentUser != null && currentUser.email != null) {
+    return currentUser.email!;
+  } else {
+    throw Exception("No trainer is currently logged in.");
+  }
+}
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _repeatPasswordController =
@@ -31,12 +43,14 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future<void> _signUp(BuildContext context) async {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final authProvider = Provider.of<fitnessio.AuthProvider>(context, listen: false);
     try {
       await authProvider.register(
         email: _emailController.text,
         password: _passwordController.text,
         context: context,
+        trainerEmail: getTrainerEmail(),
+        
       );
     } catch (e) {
       rethrow;
@@ -59,46 +73,31 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: Image.asset(ImageManager.logo),
                 ),
                 TextField(
+                  style: StyleManager.registerTextfieldTextStyle,
                   controller: _emailController,
                   decoration: InputDecoration(
-                    labelText: StringsManager.email,
+                    labelText: "Email",
                   ),
                 ),
                 TextField(
+                  style: StyleManager.registerTextfieldTextStyle,
                   controller: _passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
-                    labelText: StringsManager.password,
+                    labelText: "Password",
                   ),
                 ),
                 TextField(
+                  style: StyleManager.registerTextfieldTextStyle,
                   controller: _repeatPasswordController,
                   obscureText: true,
                   decoration: InputDecoration(
-                    labelText: StringsManager.repeatPassword,
+                    labelText: "Repeat Password",
                   ),
                 ),
                 LimeGreenRoundedButtonWidget(
                   onTap: () => _signUp(context),
                   title: StringsManager.signUp,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      StringsManager.haveAcc,
-                      style: StyleManager.loginPageSubTextTextStyle,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pushNamed(Routes.loginRoute);
-                      },
-                      child: Text(
-                        StringsManager.signIn,
-                        style: StyleManager.loginPageSubButtonSmallTextStyle,
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),

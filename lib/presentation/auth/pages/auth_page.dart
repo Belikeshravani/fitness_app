@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:Fitnessio/presentation/auth/pages/add_data_page.dart';
 import 'package:Fitnessio/presentation/auth/providers/auth_provider.dart';
-
 import 'package:Fitnessio/presentation/main/pages/main_page.dart';
 
 class AuthPage extends StatelessWidget {
@@ -27,37 +26,37 @@ class AuthPage extends StatelessWidget {
         child: Consumer2<AuthProvider, AuthProviderTrainer>(
           builder: (context, authProvider, authProviderTrainer, _) {
             final user = authProvider.user;
-
             final hasAgeParameter = authProvider.hasAgeParameter;
-            var isRegisteredUser = user != null && hasAgeParameter == true;
-            var isAddDataMode = user != null && hasAgeParameter == false;
-
             final trainer = authProviderTrainer.user;
             final trainerHasAgeParameter = authProviderTrainer.hasAgeParameter;
-            var isTrainerRegisteredUser =
-                trainer != null && trainerHasAgeParameter == true;
-            var isTrainerAddDataMode =
-                trainer != null && trainerHasAgeParameter == false;
 
-            if (user != null && trainer == null) {
-              if (isRegisteredUser) {
-                return const MainPage();
-              } else if (isAddDataMode) {
-                return const AddDataPage();
-              } 
-            }
-            else if (trainer != null && user == null) {
-              if (isTrainerRegisteredUser) {
-                return const TrainerMainPage();
-              } else if (isTrainerAddDataMode) {
-                return const AddTrainerDataPage();
-              } 
-            }
-            
+            print('Trainer: ${trainer?.email}, Has Age Parameter: $trainerHasAgeParameter');
+print('User: ${user?.email}, Has Age Parameter: $hasAgeParameter');
+
+
+            // If both user and trainer are null, show a message or fallback screen
+            if (user == null && trainer == null) {
+              // You can also show a timeout message here or fallback
               return const RoleSelectionPage();
-            
+            }
+
+            // Trainer logic
+           if (trainer != null) {
+  if (trainerHasAgeParameter == true) {
+    return const TrainerMainPage();  // If trainer has age parameter, navigate to the main trainer page
+  } else {
+    return const AddTrainerDataPage();  // Otherwise, prompt for age parameter
+  }
+}
 
 
+            // User logic
+            if (user != null && hasAgeParameter == true) {
+              return const MainPage();
+            }
+
+            // Fallback
+            return const RoleSelectionPage();
           },
         ),
       ),

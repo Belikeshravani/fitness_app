@@ -1,4 +1,6 @@
+import 'package:Fitnessio/presentation/auth/pages/add_data_page.dart';
 import 'package:Fitnessio/presentation/main/pages/main_page.dart';
+import 'package:Fitnessio/trainer/presentation/trainer_main_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,193 +10,140 @@ import 'package:Fitnessio/utils/managers/string_manager.dart';
 import 'package:Fitnessio/utils/managers/style_manager.dart';
 import 'package:Fitnessio/utils/managers/value_manager.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
+
 class AuthProvider with ChangeNotifier {
   User? _user;
-  bool? _isNewUser;
   bool? _hasAgeParameter;
-  AuthProvider() {
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      _user = user;
-      if (_user != null) {
-        FirebaseFirestore.instance
-            .collection('users')
-            .doc(_user!.uid)
-            .get()
-            .then((docSnapshot) {
-          _hasAgeParameter =
-              docSnapshot.exists && docSnapshot.data()!.containsKey('age');
-          _isNewUser =
-              _user!.metadata.creationTime == _user!.metadata.lastSignInTime &&
-                  !_hasAgeParameter!;
-          notifyListeners();
-        });
-      } else {
-        _hasAgeParameter = null;
-        _isNewUser = null;
-        notifyListeners();
-      }
-    });
-  }
-
-  void callAuth() {
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      _user = user;
-      if (_user != null) {
-        FirebaseFirestore.instance
-            .collection('users')
-            .doc(_user!.uid)
-            .get()
-            .then((docSnapshot) {
-          _hasAgeParameter =
-              docSnapshot.exists && docSnapshot.data()!.containsKey('age');
-          _isNewUser =
-              _user!.metadata.creationTime == _user!.metadata.lastSignInTime &&
-                  !_hasAgeParameter!;
-          notifyListeners();
-        });
-      } else {
-        _hasAgeParameter = null;
-        _isNewUser = null;
-        notifyListeners();
-      }
-    });
-  }
-
   User? get user => _user;
-  bool? get isNewUser => _isNewUser;
   bool? get hasAgeParameter => _hasAgeParameter;
 
-  Future<void> forgotPassword({
-    required String email,
-    required BuildContext context,
-  }) async {
-    showDialog(
-        context: context,
-        builder: (_) {
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(50),
-              child: SpinKitSpinningLines(color: ColorManager.limerGreen2),
-            ),
-          );
+  bool? _isNewUser;
+  String? _trainerEmail;
+
+  // Constructor that accepts trainerEmail
+  AuthProvider({String? trainerEmail}) {
+    _trainerEmail = trainerEmail;
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      _user = user;
+      if (_user != null) {
+        FirebaseFirestore.instance
+            .collection('trainers')
+            .doc(_trainerEmail) // Use the stored trainer email
+            .collection('users')
+            .doc(_user!.uid)
+            .get()
+            .then((docSnapshot) {
+          _hasAgeParameter = docSnapshot.exists && docSnapshot.data()!.containsKey('age');
+          _isNewUser =
+              _user!.metadata.creationTime == _user!.metadata.lastSignInTime &&
+                  !_hasAgeParameter!;
+          notifyListeners();
         });
+      } else {
+        _hasAgeParameter = null;
+        _isNewUser = null;
+        notifyListeners();
+      }
+    });
+  }
 
-    try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(
-        email: email,
-      );
-      // ignore: use_build_context_synchronously
-      Navigator.pop(context);
-      // ignore: use_build_context_synchronously
-      showDialog(
-          context: context,
-          builder: (_) {
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(PaddingManager.p40),
-                child: AlertDialog(
-                  backgroundColor: ColorManager.darkGrey,
-                  title: Text(
-                    StringsManager.success,
-                    textAlign: TextAlign.center,
-                    style: StyleManager.forgotPWErrorTextStyle,
-                  ),
-                  content: Text(
-                    StringsManager.pwResetLinkSent,
-                    textAlign: TextAlign.center,
-                    style: StyleManager.forgotPWErrorContentTextStyle,
-                  ),
-                ),
-              ),
-            );
-          });
-
-      notifyListeners();
-    } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-
-      showDialog(
-          context: context,
-          builder: (_) {
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(PaddingManager.p40),
-                child: AlertDialog(
-                  backgroundColor: ColorManager.darkGrey,
-                  title: Text(
-                    StringsManager.wrongEmail,
-                    textAlign: TextAlign.center,
-                    style: StyleManager.forgotPWErrorTextStyle,
-                  ),
-                  content: Text(
-                    e.message.toString(),
-                    textAlign: TextAlign.center,
-                    style: StyleManager.forgotPWErrorContentTextStyle,
-                  ),
-                ),
-              ),
-            );
-          });
+  // Validate trainerEmail before making Firestore calls
+  void _validateTrainerEmail(BuildContext context) {
+    if (_trainerEmail == null || _trainerEmail!.isEmpty) {
+      _showToast(context, 'Trainer email not set.', color: Colors.red);
+      return;
     }
   }
 
-  void _showToast(BuildContext context, String message, {Color? color}) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          message,
-          style: const TextStyle(color: Colors.white),
-        ),
-        backgroundColor: color ?? Colors.black,
-        behavior: SnackBarBehavior.floating,
-        duration: const Duration(seconds: 3),
-      ),
-    );
-  }
-
-  Future<void> signIn({
+  // Define the callAuth method
+  Future<void> callAuth({
     required String email,
     required String password,
     required BuildContext context,
   }) async {
-    showDialog(
-        context: context,
-        builder: (_) {
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(50),
-              child: SpinKitSpinningLines(color: ColorManager.limerGreen2),
-            ),
-          );
-        });
-
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      _showToast(context, 'Sign-in successful', color: Colors.green);
-      // ignore: use_build_context_synchronously
-      Navigator.pop(context);
-      notifyListeners();
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => MainPage()));
-    } on FirebaseAuthException catch (e) {
-      Future.delayed(const Duration(seconds: 2)).then(
-        (value) {
-          Navigator.pop(context);
-          _showToast(context, e.message ?? 'Sign-in failed', color: Colors.red);
-          notifyListeners();
-        },
-      );
+      _showToast(context, 'Signed in successfully', color: Colors.green);
+    } catch (e) {
+      _showToast(context, 'Sign-in failed: $e', color: Colors.red);
     }
   }
 
+  // Setter for trainerEmail
+  void setTrainerEmail(String trainerEmail) {
+    _trainerEmail = trainerEmail;
+    notifyListeners();
+  }
+
+  String? get trainerEmail => _trainerEmail;
+
   Future<void> register({
+  required String email,
+  required String password,
+  required BuildContext context, 
+  required String trainerEmail,
+}) async {
+  _validateTrainerEmail(context); // Ensure trainerEmail is set
+
+  showDialog(
+    context: context,
+    builder: (_) => Center(
+      child: Padding(
+        padding: const EdgeInsets.all(50),
+        child: SpinKitSpinningLines(color: ColorManager.limerGreen2),
+      ),
+    ),
+  );
+
+  try {
+    print('trainerEmail: $trainerEmail');
+    UserCredential userCredential = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email, password: password);
+
+    String userId = userCredential.user!.uid;
+
+    DocumentReference trainerDocRef = FirebaseFirestore.instance
+        .collection('trainers')
+        .doc(trainerEmail);
+
+    await trainerDocRef.set({
+      'trainerEmail': trainerEmail,
+    }, SetOptions(merge: true));
+
+    await trainerDocRef.collection('users').doc(userId).set({
+      'userId': userId,
+      'email': email,
+      'trainerEmail': trainerEmail,
+      'registeredAt': FieldValue.serverTimestamp(),
+    });
+
+    _showToast(context, 'Registration successful', color: Colors.green);
+    Navigator.pop(context);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => AddDataPage(trainerEmail: trainerEmail,)));  // Directly navigate to AddDataPage without logging in
+  } catch (e) {
+    Navigator.pop(context);
+    _showToast(context, 'Registration failed: $e', color: Colors.red);
+  }
+}
+
+  // Method to sign in a user
+  Future<void> signIn({
     required String email,
     required String password,
+    required String trainerEmail,
     required BuildContext context,
   }) async {
+    _validateTrainerEmail(context); // Ensure trainerEmail is set
+
     showDialog(
       context: context,
       builder: (_) => Center(
@@ -206,30 +155,36 @@ class AuthProvider with ChangeNotifier {
     );
 
     try {
-      UserCredential credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      // ignore: use_build_context_synchronously
-      Navigator.pop(context);
-      await FirebaseFirestore.instance
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+
+      String userId = userCredential.user!.uid;
+
+      DocumentSnapshot userDocSnapshot = await FirebaseFirestore.instance
+          .collection('trainers')
+          .doc(trainerEmail)
           .collection('users')
-          .doc(credential.user!.uid)
-          .set({});
-      _showToast(context, 'Registration successful', color: Colors.green);
+          .doc(userId)
+          .get();
+
+      if (userDocSnapshot.exists) {
+        _trainerEmail = userDocSnapshot['trainerEmail'];
+      }
+
+      _showToast(context, 'Sign-in successful', color: Colors.green);
       notifyListeners();
-    } on FirebaseAuthException catch (e) {
-      Future.delayed(const Duration(seconds: 2)).then((value) {
-        Navigator.pop(context);
-        _showToast(context, e.message ?? 'Registration failed',
-            color: Colors.red);
-        notifyListeners();
-      });
+      Navigator.pop(context);
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MainPage())); // Navigate to the home page
+    } catch (e) {
+      Navigator.pop(context);
+      _showToast(context, 'Sign-in failed: $e', color: Colors.red);
     }
   }
 
+  // Method to add user data
   Future<void> addUserData({
+    
     required String email,
     required String name,
     required String surname,
@@ -241,14 +196,23 @@ class AuthProvider with ChangeNotifier {
     required double bmr,
     required String goal,
     required double bmi,
-    required BuildContext context,
+    required BuildContext context, required String trainerEmail,
   }) async {
-    try {
-      User? user = FirebaseAuth.instance.currentUser;
+    _validateTrainerEmail(context); // Ensure trainerEmail is set
 
+   // User? user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      _showToast(context, 'User not authenticated. Please sign in again.', color: Colors.red);
+      return;
+    }
+
+    try {
       await FirebaseFirestore.instance
+          .collection('trainers')
+          .doc(trainerEmail)
           .collection('users')
-          .doc(user!.uid)
+          .doc(user.uid)
           .update({
         'email': email,
         'name': name,
@@ -270,9 +234,31 @@ class AuthProvider with ChangeNotifier {
         'thigh': 0.0,
         'calf': 0.0,
       });
+
+      _showToast(context, 'User data added successfully', color: Colors.green);
       notifyListeners();
     } catch (e) {
-      rethrow;
+      _showToast(context, 'Unexpected error: $e', color: Colors.red);
+    }
+  }
+
+  // Helper method to show toast messages
+  void _showToast(BuildContext context, String message, {Color color = Colors.green}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message), backgroundColor: color),
+    );
+  }
+
+  // Forgot password method
+  Future<void> forgotPassword({
+    required String email,
+    required BuildContext context,
+  }) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      _showToast(context, 'Password reset email sent.', color: Colors.green);
+    } catch (e) {
+      _showToast(context, 'Failed to send reset email: $e', color: Colors.red);
     }
   }
 }

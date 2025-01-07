@@ -11,8 +11,8 @@ class TrainerHomeProvider with ChangeNotifier {
 
       if (trainer != null) {
         DocumentSnapshot userDataSnapshot = await FirebaseFirestore.instance
-            .collection('trainer')
-            .doc(trainer.uid)
+            .collection('trainers')
+            .doc(trainer.email)
             .get();
         _trainerData['name'] = userDataSnapshot.get('name');
         _trainerData['surname'] = userDataSnapshot.get('surname');

@@ -1,3 +1,5 @@
+import 'package:Fitnessio/presentation/auth/pages/login_or_register_page.dart';
+import 'package:Fitnessio/presentation/auth/pages/login_page.dart';
 import 'package:Fitnessio/trainer/auth/pages/login_or_register_page.dart';
 import 'package:flutter/material.dart';
 
@@ -68,7 +70,7 @@ class RoleSelectionPage extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   // Navigate to Trainee Page
-                  Navigator.pushNamed(context, '/login');
+                  Navigator.push(context,MaterialPageRoute(builder: (context)=>LoginPage()));
                 },
                 child: Container(
                   margin: EdgeInsets.symmetric(vertical: 10),

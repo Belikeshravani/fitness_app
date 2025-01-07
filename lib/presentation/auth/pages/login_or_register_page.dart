@@ -14,14 +14,14 @@ import 'package:Fitnessio/utils/widgets/lime_green_rounded_button.dart';
 
 enum AuthMode { signUp, signIn }
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginOrRegisterPage extends StatefulWidget {
+  const LoginOrRegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginOrRegisterPage> createState() => _LoginOrRegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage>
+class _LoginOrRegisterPageState extends State<LoginOrRegisterPage>
     with SingleTickerProviderStateMixin {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -69,6 +69,7 @@ class _LoginPageState extends State<LoginPage>
           email: _emailController.text,
           password: _passwordController.text,
           context: context,
+          trainerEmail: '',
         );
       } catch (e) {
         rethrow;
@@ -81,6 +82,7 @@ class _LoginPageState extends State<LoginPage>
           email: _emailController.text,
           password: _passwordController.text,
           context: context,
+           trainerEmail: '',
         );
       } catch (e) {
         rethrow;

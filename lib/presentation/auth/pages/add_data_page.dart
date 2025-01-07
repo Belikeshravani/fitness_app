@@ -1,3 +1,4 @@
+import 'package:Fitnessio/trainer/presentation/trainer_main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:Fitnessio/presentation/auth/providers/auth_provider.dart';
@@ -11,13 +12,16 @@ import 'package:Fitnessio/utils/managers/value_manager.dart';
 import 'package:Fitnessio/utils/widgets/lime_green_rounded_button.dart';
 
 class AddDataPage extends StatefulWidget {
-  const AddDataPage({super.key});
+   final String trainerEmail;
+  
+  const AddDataPage({super.key, required this.trainerEmail});
 
   @override
   State<AddDataPage> createState() => _AddDataPageState();
 }
 
 class _AddDataPageState extends State<AddDataPage> {
+ 
   final TextEditingController _ageController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _surnameController = TextEditingController();
@@ -82,6 +86,7 @@ class _AddDataPageState extends State<AddDataPage> {
                 ))
             .then(
               (_) => authProvider.addUserData(
+                trainerEmail: widget.trainerEmail,
                 email: email!,
                 name: _nameController.text,
                 surname: _surnameController.text,
@@ -139,8 +144,11 @@ class _AddDataPageState extends State<AddDataPage> {
               LimeGreenRoundedButtonWidget(
                 onTap: () {
                   addUserData().then(
-                    (value) => Navigator.of(context)
-                        .pushReplacementNamed(Routes.mainRoute),
+                    (value) => Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TrainerMainPage()),
+                        (route) => false),
                   );
                 },
                 title: StringsManager.proceed,
