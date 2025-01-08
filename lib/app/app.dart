@@ -1,3 +1,4 @@
+import 'package:Fitnessio/controller/language_change_controller.dart';
 import 'package:Fitnessio/trainer/auth/provider/auth_provider_trainer.dart';
 import 'package:Fitnessio/trainer/home/provider/trainer_home_provider.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ import 'package:Fitnessio/presentation/profile/providers/profile_provider.dart';
 import 'package:Fitnessio/presentation/settings/providers/settings_provider.dart';
 import 'package:Fitnessio/presentation/workouts/providers/workout_provider.dart';
 import 'package:Fitnessio/utils/router/router.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class MyApp extends StatefulWidget {
@@ -28,7 +31,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-         ChangeNotifierProvider.value(
+        ChangeNotifierProvider.value(
           value: TrainerHomeProvider(),
         ),
         ChangeNotifierProvider.value(
@@ -51,14 +54,34 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider.value(
           value: ProfileProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => LanguageChangeController(),
         )
       ],
       child: ScreenUtilInit(
-        builder: (context, child) => const MaterialApp(
-          debugShowCheckedModeBanner: false,
-          onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: Routes.boardingRoute,
-        ),
+        builder: (context, child) => Consumer<LanguageChangeController>(
+            builder: (context, provider, child) {
+          print("hello");
+          
+          print(provider.appLocale);
+          return MaterialApp(
+            locale: provider.appLocale,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate
+            ],
+            supportedLocales: const [
+              Locale('en'),
+              Locale('nl'),
+            ],
+            debugShowCheckedModeBanner: false,
+            onGenerateRoute: RouteGenerator.getRoute,
+            initialRoute: Routes.boardingRoute,
+          );
+        }),
         designSize: const Size(430, 810),
       ),
     );

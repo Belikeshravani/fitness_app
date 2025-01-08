@@ -33,6 +33,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _repeatPasswordController =
       TextEditingController();
+      final TextEditingController _yourPasswordController = TextEditingController();
 
   @override
   void dispose() {
@@ -50,6 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
         password: _passwordController.text,
         context: context,
         trainerEmail: getTrainerEmail(),
+        trainersPassword: _yourPasswordController.text,
         
       );
     } catch (e) {
@@ -93,6 +95,14 @@ class _RegisterPageState extends State<RegisterPage> {
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: "Repeat Password",
+                  ),
+                ),
+                TextField(
+                  style: StyleManager.registerTextfieldTextStyle,
+                  controller: _yourPasswordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: "Your Password",
                   ),
                 ),
                 LimeGreenRoundedButtonWidget(

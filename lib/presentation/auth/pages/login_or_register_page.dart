@@ -83,6 +83,7 @@ class _LoginOrRegisterPageState extends State<LoginOrRegisterPage>
           password: _passwordController.text,
           context: context,
            trainerEmail: '',
+          trainersPassword: '',
         );
       } catch (e) {
         rethrow;

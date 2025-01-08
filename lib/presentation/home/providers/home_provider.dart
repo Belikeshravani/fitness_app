@@ -20,12 +20,14 @@ class HomeProvider with ChangeNotifier {
       if (user != null) {
         // Fetch the user document
         DocumentSnapshot userDataSnapshot = await FirebaseFirestore.instance
+            
             .collection('users')
             .doc(user.uid)
             .get();
 
         // Extract the trainerEmail from the user's data
         String trainerEmail = userDataSnapshot.get('trainerEmail');
+        print("trainerEmail in home Provider : $trainerEmail");
         // Fetch data from the trainer's collection
         DocumentSnapshot trainerUserDataSnapshot = await FirebaseFirestore
             .instance

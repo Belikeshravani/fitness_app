@@ -88,8 +88,9 @@ class AuthProvider with ChangeNotifier {
   Future<void> register({
   required String email,
   required String password,
-  required BuildContext context, 
+  required BuildContext context,
   required String trainerEmail,
+  required String trainersPassword,
 }) async {
   _validateTrainerEmail(context); // Ensure trainerEmail is set
 
@@ -104,12 +105,27 @@ class AuthProvider with ChangeNotifier {
   );
 
   try {
-    print('trainerEmail: $trainerEmail');
+    // Save the current trainer's credentials
+    User? currentTrainer = FirebaseAuth.instance.currentUser;
+    String? trainerEmail = currentTrainer?.email;
+    String? trainerPassword = trainersPassword; // Replace with secure password handling.
+
+    // Register the new user
     UserCredential userCredential = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
 
     String userId = userCredential.user!.uid;
 
+    // Sign the trainer back in
+    if (trainerEmail != null && trainerPassword != null) {
+      await FirebaseAuth.instance.signOut();
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: trainerEmail,
+        password: trainerPassword,
+      );
+    }
+
+    // Add user data to Firestore
     DocumentReference trainerDocRef = FirebaseFirestore.instance
         .collection('trainers')
         .doc(trainerEmail);
@@ -127,8 +143,9 @@ class AuthProvider with ChangeNotifier {
 
     _showToast(context, 'Registration successful', color: Colors.green);
     Navigator.pop(context);
+       Navigator.pop(context);
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => AddDataPage(trainerEmail: trainerEmail,)));  // Directly navigate to AddDataPage without logging in
+        context, MaterialPageRoute(builder: (context) => AddDataPage(trainerEmail: trainerEmail!,))); 
   } catch (e) {
     Navigator.pop(context);
     _showToast(context, 'Registration failed: $e', color: Colors.red);
@@ -212,7 +229,7 @@ class AuthProvider with ChangeNotifier {
           .collection('trainers')
           .doc(trainerEmail)
           .collection('users')
-          .doc(user.uid)
+          .doc(user!.uid)
           .update({
         'email': email,
         'name': name,

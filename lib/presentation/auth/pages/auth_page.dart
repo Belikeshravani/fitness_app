@@ -35,25 +35,27 @@ print('User: ${user?.email}, Has Age Parameter: $hasAgeParameter');
 
 
             // If both user and trainer are null, show a message or fallback screen
-            if (user == null && trainer == null) {
-              // You can also show a timeout message here or fallback
-              return const RoleSelectionPage();
-            }
+            // if (user == null && trainer == null) {
+            //   // You can also show a timeout message here or fallback
+            //   return const RoleSelectionPage();
+            // }
 
-            // Trainer logic
-           if (trainer != null) {
-  if (trainerHasAgeParameter == true) {
-    return const TrainerMainPage();  // If trainer has age parameter, navigate to the main trainer page
-  } else {
-    return const AddTrainerDataPage();  // Otherwise, prompt for age parameter
-  }
-}
+//               if (user != null && hasAgeParameter == true) {
+//               return const MainPage();
+//             }
+
+//             //Trainer logic
+//            if (trainer != null) {
+//   if (trainerHasAgeParameter == true) {
+//     return const TrainerMainPage();  // If trainer has age parameter, navigate to the main trainer page
+//   } else {
+//     return const AddTrainerDataPage();  // Otherwise, prompt for age parameter
+//   }
+// }
 
 
             // User logic
-            if (user != null && hasAgeParameter == true) {
-              return const MainPage();
-            }
+          
 
             // Fallback
             return const RoleSelectionPage();

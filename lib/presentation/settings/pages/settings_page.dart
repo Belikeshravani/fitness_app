@@ -1,10 +1,14 @@
+import 'package:Fitnessio/utils/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:Fitnessio/controller/language_change_controller.dart';
 import 'package:Fitnessio/presentation/settings/widgets/button_settings.dart';
 import 'package:Fitnessio/utils/managers/string_manager.dart';
 import 'package:Fitnessio/utils/managers/style_manager.dart';
 import 'package:Fitnessio/utils/managers/value_manager.dart';
-import 'package:Fitnessio/utils/router/router.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -12,6 +16,8 @@ class SettingsPage extends StatefulWidget {
   @override
   State<SettingsPage> createState() => _SettingsPageState();
 }
+
+enum Language { english, dutch }
 
 class _SettingsPageState extends State<SettingsPage> {
   @override
@@ -33,7 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   top: PaddingManager.p12,
                 ),
                 child: Text(
-                  StringsManager.accountSpacer,
+                  AppLocalizations.of(context)!.account,
                   style: StyleManager.settingsPageSpacerTextStyle,
                 ),
               ),
@@ -43,30 +49,65 @@ class _SettingsPageState extends State<SettingsPage> {
               onTap: () =>
                   Navigator.of(context).pushNamed(Routes.changeEmailRoute),
               iconData: Icons.email_outlined,
-              title: StringsManager.changeEmail,
+              title: AppLocalizations.of(context)!.changeemail,
             ),
             SettingsPageButton(
-              deviceWidth: deviceWidth,
-              onTap: () =>
-                  Navigator.of(context).pushNamed(Routes.changePasswordRoute),
-              iconData: Icons.lock_open_sharp,
-              title: StringsManager.changePassword,
-            ),
+                deviceWidth: deviceWidth,
+                onTap: () =>
+                    Navigator.of(context).pushNamed(Routes.changePasswordRoute),
+                iconData: Icons.lock_open_sharp,
+                title: AppLocalizations.of(context)!.changepass),
             SettingsPageButton(
               deviceWidth: deviceWidth,
               onTap: () =>
                   Navigator.of(context).pushNamed(Routes.deleteAccRoute),
               iconData: Icons.delete_outlined,
-              title: StringsManager.deleteAcc,
-            ),
-            
-            
-            
+              title: AppLocalizations.of(context)!.deleteaccount,
+            )
+                // SettingsPageButton(
+                //   deviceWidth: deviceWidth,
+                //   onTap: () =>
+                //   iconData: Icons.language,
+                //   title: AppLocalizations.of(context)!.changelanguage,
+                // )
+                .animate()
+                .fadeIn(
+                  duration: 500.ms,
+                ),
           ],
-        ).animate().fadeIn(
-              duration: 500.ms,
-            ),
+        ),
       ),
     );
   }
+
+  // PopupMenuButton? _showLanguageDialog(BuildContext context) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       Consumer<LanguageChangeController>(builder: (context, provider, child) {
+  //         return PopupMenuButton(
+  //           onSelected: (Language item) {
+  //             if (Language.english.name == item.name) {
+  //               provider.changeLanguage(Locale('en'));
+  //             }
+  //             else if (Language.dutch.name == item.name) {
+  //               provider.changeLanguage(Locale('nl'));
+  //             }
+  //           },
+  //           itemBuilder: (BuildContext context) => <PopupMenuEntry<Language>>[
+  //             PopupMenuItem(
+  //               value: Language.english,
+  //               child: Text("English"),
+  //             ),
+  //             PopupMenuItem(
+  //               value: Language.dutch,
+  //               child: Text("Dutch"),
+  //             ),
+  //           ],
+  //         );
+  //       });
+//       },
+//     );
+//   }
+// }
 }

@@ -1,3 +1,5 @@
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class StringsManager {
   static const String noRouteFound = 'No Route Found';
   static const String splashText1 = 'Plan your workouts\nwith ease';
@@ -213,5 +215,322 @@ class StringsManager {
   static const String declineBenchPressDumBell = 'Decline Bench Press(Dumbell)';
   static const String declineBenchPressMachine = 'Decline Bench Press(Machine)';
 
-  
+  class StringManager {
+  static String noRouteFound(BuildContext context) {
+    return AppLocalizations.of(context)!.noRouteFound;
+  }
+
+  static String splashText1(BuildContext context) {
+    return AppLocalizations.of(context)!.splashText1;
+  }
+
+  static String splashText2(BuildContext context) {
+    return AppLocalizations.of(context)!.splashText2;
+  }
+
+  static String getStarted(BuildContext context) {
+    return AppLocalizations.of(context)!.getStarted;
+  }
+
+  static String key(BuildContext context) {
+    return AppLocalizations.of(context)!.key;
+  }
+
+  static String emailHint(BuildContext context) {
+    return AppLocalizations.of(context)!.emailHint;
+  }
+
+  static String passwordHint(BuildContext context) {
+    return AppLocalizations.of(context)!.passwordHint;
+  }
+
+  static String signIn(BuildContext context) {
+    return AppLocalizations.of(context)!.signIn;
+  }
+
+  static String signUp(BuildContext context) {
+    return AppLocalizations.of(context)!.signUp;
+  }
+
+  static String haveAcc(BuildContext context) {
+    return AppLocalizations.of(context)!.haveAcc;
+  }
+
+  static String dontHaveAcc(BuildContext context) {
+    return AppLocalizations.of(context)!.dontHaveAcc;
+  }
+
+  static String forgotPassword(BuildContext context) {
+    return AppLocalizations.of(context)!.forgotPassword;
+  }
+
+  static String repeatPasswordHint(BuildContext context) {
+    return AppLocalizations.of(context)!.repeatPasswordHint;
+  }
+
+  static String swipeToPrc(BuildContext context) {
+    return AppLocalizations.of(context)!.swipeToPrc;
+  }
+
+  static String myAcc(BuildContext context) {
+    return AppLocalizations.of(context)!.myAcc;
+  }
+
+  static String enterEmailToResetPw(BuildContext context) {
+    return AppLocalizations.of(context)!.enterEmailToResetPw;
+  }
+
+  static String resetPassword(BuildContext context) {
+    return AppLocalizations.of(context)!.resetPassword;
+  }
+
+  static String wrongEmail(BuildContext context) {
+    return AppLocalizations.of(context)!.wrongEmail;
+  }
+
+  static String success(BuildContext context) {
+    return AppLocalizations.of(context)!.success;
+  }
+
+  static String pwResetLinkSent(BuildContext context) {
+    return AppLocalizations.of(context)!.pwResetLinkSent;
+  }
+
+  static String ageHint(BuildContext context) {
+    return AppLocalizations.of(context)!.ageHint;
+  }
+
+  static String nameHint(BuildContext context) {
+    return AppLocalizations.of(context)!.nameHint;
+  }
+
+  static String surnameHint(BuildContext context) {
+    return AppLocalizations.of(context)!.surnameHint;
+  }
+
+  static String settingsABtitle(BuildContext context) {
+    return AppLocalizations.of(context)!.settingsABtitle;
+  }
+
+  static String addMealABtitle(BuildContext context) {
+    return AppLocalizations.of(context)!.addMealABtitle;
+  }
+
+  static String workoutsABtitle(BuildContext context) {
+    return AppLocalizations.of(context)!.workoutsABtitle;
+  }
+
+  static String consumptionABtitle(BuildContext context) {
+    return AppLocalizations.of(context)!.consumptionABtitle;
+  }
+
+  static String signOut(BuildContext context) {
+    return AppLocalizations.of(context)!.signOut;
+  }
+
+  static String changePassword(BuildContext context) {
+    return AppLocalizations.of(context)!.changePassword;
+  }
+
+  static String changeEmail(BuildContext context) {
+    return AppLocalizations.of(context)!.changeEmail;
+  }
+
+  static String measurement(BuildContext context) {
+    return AppLocalizations.of(context)!.measurement;
+  }
+
+  static String heightHint(BuildContext context) {
+    return AppLocalizations.of(context)!.heightHint;
+  }
+
+  static String weightHint(BuildContext context) {
+    return AppLocalizations.of(context)!.weightHint;
+  }
+
+  static String genderHint(BuildContext context) {
+    return AppLocalizations.of(context)!.genderHint;
+  }
+
+  static String genderManHint(BuildContext context) {
+    return AppLocalizations.of(context)!.genderManHint;
+  }
+
+  static String genderWomanHint(BuildContext context) {
+    return AppLocalizations.of(context)!.genderWomanHint;
+  }
+
+  static String expHint(BuildContext context) {
+    return AppLocalizations.of(context)!.expHint;
+  }
+
+  static String FitnessioABtitle(BuildContext context) {
+    return AppLocalizations.of(context)!.FitnessioABtitle;
+  }
+
+  static String accountSpacer(BuildContext context) {
+    return AppLocalizations.of(context)!.accountSpacer;
+  }
+
+  static String generalSpacer(BuildContext context) {
+    return AppLocalizations.of(context)!.generalSpacer;
+  }
+
+  static String inviteFriend(BuildContext context) {
+    return AppLocalizations.of(context)!.inviteFriend;
+  }
+
+  static String termsOfService(BuildContext context) {
+    return AppLocalizations.of(context)!.termsOfService;
+  }
+
+  static String support(BuildContext context) {
+    return AppLocalizations.of(context)!.support;
+  }
+
+  static String theme(BuildContext context) {
+    return AppLocalizations.of(context)!.theme;
+  }
+
+  static String deleteAcc(BuildContext context) {
+    return AppLocalizations.of(context)!.deleteAcc;
+  }
+
+  static String oldPasswordHint(BuildContext context) {
+    return AppLocalizations.of(context)!.oldPasswordHint;
+  }
+
+  static String newPasswordHint(BuildContext context) {
+    return AppLocalizations.of(context)!.newPasswordHint;
+  }
+
+  static String changePWtext(BuildContext context) {
+    return AppLocalizations.of(context)!.changePWtext;
+  }
+
+  static String changePasswordABtitle(BuildContext context) {
+    return AppLocalizations.of(context)!.changePasswordABtitle;
+  }
+
+  static String changeEmailABtitle(BuildContext context) {
+    return AppLocalizations.of(context)!.changeEmailABtitle;
+  }
+
+  static String oldEmailHint(BuildContext context) {
+    return AppLocalizations.of(context)!.oldEmailHint;
+  }
+
+  static String newEmailHint(BuildContext context) {
+    return AppLocalizations.of(context)!.newEmailHint;
+  }
+
+  static String deleteAccABtitle(BuildContext context) {
+    return AppLocalizations.of(context)!.deleteAccABtitle;
+  }
+
+  static String proceed(BuildContext context) {
+    return AppLocalizations.of(context)!.proceed;
+  }
+
+  static String uSure(BuildContext context) {
+    return AppLocalizations.of(context)!.uSure;
+  }
+
+  static String no(BuildContext context) {
+    return AppLocalizations.of(context)!.no;
+  }
+
+  static String yes(BuildContext context) {
+    return AppLocalizations.of(context)!.yes;
+  }
+
+  static String changeEmailContent(BuildContext context) {
+    return AppLocalizations.of(context)!.changeEmailContent;
+  }
+
+  static String deleteAccContent(BuildContext context) {
+    return AppLocalizations.of(context)!.deleteAccContent;
+  }
+
+  static String welcomeBack(BuildContext context) {
+    return AppLocalizations.of(context)!.welcomeBack;
+  }
+
+  static String todaysProg(BuildContext context) {
+    return AppLocalizations.of(context)!.todaysProg;
+  }
+
+  static String todaysAct(BuildContext context) {
+    return AppLocalizations.of(context)!.todaysAct;
+  }
+
+  static String benefits(BuildContext context) {
+    return AppLocalizations.of(context)!.benefits;
+  }
+
+  static String strengh(BuildContext context) {
+    return AppLocalizations.of(context)!.strengh;
+  }
+
+  static String yoga(BuildContext context) {
+    return AppLocalizations.of(context)!.yoga;
+  }
+
+  static String power(BuildContext context) {
+    return AppLocalizations.of(context)!.power;
+  }
+
+  static String confidence(BuildContext context) {
+    return AppLocalizations.of(context)!.confidence;
+  }
+
+  static String meditation(BuildContext context) {
+    return AppLocalizations.of(context)!.meditation;
+  }
+
+  static String focus(BuildContext context) {
+    return AppLocalizations.of(context)!.focus;
+  }
+
+  static String mealNameHint(BuildContext context) {
+    return AppLocalizations.of(context)!.mealNameHint;
+  }
+
+  static String mealAmountHint(BuildContext context) {
+    return AppLocalizations.of(context)!.mealAmountHint;
+  }
+
+  static String mealCaloriesHint(BuildContext context) {
+    return AppLocalizations.of(context)!.mealCaloriesHint;
+  }
+
+  static String add(BuildContext context) {
+    return AppLocalizations.of(context)!.add;
+  }
+
+  static String mealProteinsHint(BuildContext context) {
+    return AppLocalizations.of(context)!.mealProteinsHint;
+  }
+
+  static String mealFatsHint(BuildContext context) {
+    return AppLocalizations.of(context)!.mealFatsHint;
+  }
+
+  static String mealCarbsHint(BuildContext context) {
+    return AppLocalizations.of(context)!.mealCarbsHint;
+  }
+
+  static String fats(BuildContext context) {
+    return AppLocalizations.of(context)!.fats;
+  }
+
+  static String carbs(BuildContext context) {
+    return AppLocalizations.of(context)!.carbs;
+  }
+
+  static String proteins(BuildContext context) {
+    return AppLocalizations.of(context)!.proteins;
+  }
+}
+
 }

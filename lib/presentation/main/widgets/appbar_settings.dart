@@ -1,3 +1,4 @@
+import 'package:Fitnessio/controller/language_change_controller.dart';
 import 'package:Fitnessio/roles_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -9,8 +10,11 @@ import 'package:Fitnessio/utils/managers/color_manager.dart';
 import 'package:Fitnessio/utils/managers/string_manager.dart';
 import 'package:Fitnessio/utils/managers/style_manager.dart';
 import 'package:Fitnessio/utils/managers/value_manager.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+enum Language { english, dutch }
 class SettingsPageAppBarWidget extends StatefulWidget {
+
   const SettingsPageAppBarWidget({
     super.key,
   });
@@ -60,6 +64,30 @@ class _SettingsPageAppBarWidgetState extends State<SettingsPageAppBarWidget> {
         style: StyleManager.appbarTitleTextStyle,
       ),
       actions: [
+         Consumer<LanguageChangeController>(builder: (context, provider, child) {
+          return PopupMenuButton(
+            onSelected: (Language item) {
+              if (Language.english.name == item.name) {
+                provider.changeLanguage(Locale('en'));
+              }
+              else if (Language.dutch.name == item.name) {
+                provider.changeLanguage(Locale('nl'));
+              }
+            },
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<Language>>[
+              PopupMenuItem(
+                value: Language.english,
+                child: Text("English"),
+              ),
+              PopupMenuItem(
+                value: Language.dutch,
+                child: Text("Dutch"),
+              ),
+            ],
+          );
+        }),
+
+
         Padding(
           padding: const EdgeInsets.only(right: PaddingManager.p12),
           child: Container(

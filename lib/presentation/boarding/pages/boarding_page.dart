@@ -9,7 +9,8 @@ import 'package:Fitnessio/utils/managers/style_manager.dart';
 import 'package:Fitnessio/utils/managers/value_manager.dart';
 import 'package:Fitnessio/presentation/boarding/widgets/slider_boarding.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class BoardingPage extends StatefulWidget {
   const BoardingPage({super.key});
 
@@ -141,7 +142,7 @@ class _BoardingPageState extends State<BoardingPage> {
                   Padding(
                     padding: const EdgeInsets.only(top: PaddingManager.p28),
                     child: Text(
-                      StringsManager.splashText1,
+                      AppLocalizations.of(context)!.splashtext,
                       style: StyleManager.splashText1TextStyle,
                       textAlign: TextAlign.center,
                     ),
