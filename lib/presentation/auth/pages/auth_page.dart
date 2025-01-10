@@ -1,15 +1,34 @@
-import 'package:Fitnessio/roles_page.dart';
-import 'package:Fitnessio/trainer/auth/pages/add_trainer_data.dart';
-import 'package:Fitnessio/trainer/auth/provider/auth_provider_trainer.dart';
-import 'package:Fitnessio/trainer/presentation/trainer_main_page.dart';
+import 'dart:async'; // For Future.delayed
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:Fitnessio/presentation/auth/pages/add_data_page.dart';
-import 'package:Fitnessio/presentation/auth/providers/auth_provider.dart';
+import 'package:Fitnessio/roles_page.dart';
+import 'package:Fitnessio/trainer/presentation/trainer_main_page.dart';
 import 'package:Fitnessio/presentation/main/pages/main_page.dart';
+import 'package:Fitnessio/presentation/auth/providers/auth_provider.dart';
+import 'package:Fitnessio/trainer/auth/provider/auth_provider_trainer.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
+
+  Future<Widget> _delayedLogic(
+      AuthProviderTrainer authProviderTrainer, AuthProvider authProvider) async {
+    await Future.delayed(const Duration(seconds: 2)); // 2-second delay
+
+    final trainer = authProviderTrainer.user;
+    final user = authProvider.user;
+    final hasAgeParameter = authProvider.hasAgeParameter;
+    final hasAgeParameterTrainer = authProviderTrainer.hasAgeParameter;
+
+    if (trainer != null && hasAgeParameterTrainer == true) {
+      return const TrainerMainPage();
+    } else if (trainer != null && hasAgeParameter == false) {
+      return const MainPage();
+    } else if (trainer == null) {
+      return RoleSelectionPage();
+    }
+
+    return const RoleSelectionPage(); // Fallback
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,40 +44,20 @@ class AuthPage extends StatelessWidget {
         ],
         child: Consumer2<AuthProvider, AuthProviderTrainer>(
           builder: (context, authProvider, authProviderTrainer, _) {
-            final user = authProvider.user;
-            final hasAgeParameter = authProvider.hasAgeParameter;
-            final trainer = authProviderTrainer.user;
-            final trainerHasAgeParameter = authProviderTrainer.hasAgeParameter;
-
-            print('Trainer: ${trainer?.email}, Has Age Parameter: $trainerHasAgeParameter');
-print('User: ${user?.email}, Has Age Parameter: $hasAgeParameter');
-
-
-            // If both user and trainer are null, show a message or fallback screen
-            // if (user == null && trainer == null) {
-            //   // You can also show a timeout message here or fallback
-            //   return const RoleSelectionPage();
-            // }
-
-//               if (user != null && hasAgeParameter == true) {
-//               return const MainPage();
-//             }
-
-//             //Trainer logic
-//            if (trainer != null) {
-//   if (trainerHasAgeParameter == true) {
-//     return const TrainerMainPage();  // If trainer has age parameter, navigate to the main trainer page
-//   } else {
-//     return const AddTrainerDataPage();  // Otherwise, prompt for age parameter
-//   }
-// }
-
-
-            // User logic
-          
-
-            // Fallback
-            return const RoleSelectionPage();
+            return FutureBuilder<Widget>(
+              future: _delayedLogic(authProviderTrainer, authProvider),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  ); // Show loading spinner while waiting
+                } else if (snapshot.hasData) {
+                  return snapshot.data!;
+                } else {
+                  return const RoleSelectionPage(); // Fallback in case of an error
+                }
+              },
+            );
           },
         ),
       ),

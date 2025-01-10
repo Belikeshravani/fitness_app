@@ -8,6 +8,7 @@ import 'package:Fitnessio/utils/managers/color_manager.dart';
 import 'package:Fitnessio/utils/managers/string_manager.dart';
 import 'package:Fitnessio/utils/managers/style_manager.dart';
 import 'package:Fitnessio/utils/managers/value_manager.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TodaysProgressWidget extends StatelessWidget {
   const TodaysProgressWidget({
@@ -49,7 +50,8 @@ class TodaysProgressWidget extends StatelessWidget {
           } else if (workoutProvider.finishedWourkouts.isEmpty &&
               workoutProvider.workouts.isEmpty) {
             return Text(
-              StringsManager.startYourExercises,
+              AppLocalizations.of(context)!.startYourExercises,
+             // StringsManager.startYourExercises,
               style: StyleManager.homePageS14RegularWhite2L1,
               textAlign: TextAlign.left,
             );
@@ -102,7 +104,8 @@ class TodaysProgressWidget extends StatelessWidget {
                           left: PaddingManager.p20,
                         ),
                         child: Text(
-                          StringsManager.todaysProg,
+                          AppLocalizations.of(context)!.todaysProg,
+                          //StringsManager.todaysProg,
                           style: StyleManager.homePageTodaysProgressTextSTyle,
                           textAlign: TextAlign.left,
                         ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:Fitnessio/presentation/home/widgets/carousel_home_box.dart';
 import 'package:Fitnessio/utils/managers/asset_manager.dart';
 import 'package:Fitnessio/utils/managers/string_manager.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CarouselSliderHomeWidget extends StatelessWidget {
   const CarouselSliderHomeWidget({
@@ -20,7 +21,8 @@ class CarouselSliderHomeWidget extends StatelessWidget {
           onTap: () {
             //TODO
           },
-          title: StringsManager.strengh,
+          title: AppLocalizations.of(context)!.strengh,
+          //StringsManager.strengh,
         ),
         CarouselHomeBox(
           deviceWidth: deviceWidth,
@@ -28,7 +30,8 @@ class CarouselSliderHomeWidget extends StatelessWidget {
           onTap: () {
             //TODO
           },
-          title: StringsManager.yoga,
+          title: AppLocalizations.of(context)!.yoga,
+         // StringsManager.yoga,
         ),
         CarouselHomeBox(
           deviceWidth: deviceWidth,
@@ -36,7 +39,8 @@ class CarouselSliderHomeWidget extends StatelessWidget {
           onTap: () {
             //TODO
           },
-          title: StringsManager.power,
+          title: AppLocalizations.of(context)!.power,
+          //StringsManager.power,
         ),
         CarouselHomeBox(
           deviceWidth: deviceWidth,
@@ -44,7 +48,8 @@ class CarouselSliderHomeWidget extends StatelessWidget {
           onTap: () {
             //TODO
           },
-          title: StringsManager.focus,
+          title:AppLocalizations.of(context)!.focus,
+          // StringsManager.focus,
         ),
         CarouselHomeBox(
           deviceWidth: deviceWidth,
@@ -52,7 +57,8 @@ class CarouselSliderHomeWidget extends StatelessWidget {
           onTap: () {
             //TODO
           },
-          title: StringsManager.confidence,
+          title:AppLocalizations.of(context)!.confidence,
+          // StringsManager.confidence,
         ),
       ],
       options: CarouselOptions(

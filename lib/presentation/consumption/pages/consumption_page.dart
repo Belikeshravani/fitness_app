@@ -10,7 +10,8 @@ import 'package:Fitnessio/utils/managers/value_manager.dart';
 import 'package:Fitnessio/utils/router/router.dart';
 
 class ConsumptionPage extends StatefulWidget {
-  const ConsumptionPage({super.key});
+  
+  ConsumptionPage({super.key});
 
   @override
   State<ConsumptionPage> createState() => _ConsumptionPageState();

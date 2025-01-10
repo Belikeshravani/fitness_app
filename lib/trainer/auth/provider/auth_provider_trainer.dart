@@ -14,7 +14,7 @@ class AuthProviderTrainer with ChangeNotifier {
   User? _trainer;
   bool? _isNewUser;
   bool? _hasAgeParameter;
-  
+
   AuthProviderTrainer() {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       _trainer = user;
@@ -26,9 +26,9 @@ class AuthProviderTrainer with ChangeNotifier {
             .then((docSnapshot) {
           _hasAgeParameter =
               docSnapshot.exists && docSnapshot.data()!.containsKey('age');
-          _isNewUser =
-              _trainer!.metadata.creationTime == _trainer!.metadata.lastSignInTime &&
-                  !_hasAgeParameter!;
+          _isNewUser = _trainer!.metadata.creationTime ==
+                  _trainer!.metadata.lastSignInTime &&
+              !_hasAgeParameter!;
           notifyListeners();
         });
       } else {
@@ -50,9 +50,9 @@ class AuthProviderTrainer with ChangeNotifier {
             .then((docSnapshot) {
           _hasAgeParameter =
               docSnapshot.exists && docSnapshot.data()!.containsKey('age');
-          _isNewUser =
-              _trainer!.metadata.creationTime == _trainer!.metadata.lastSignInTime &&
-                  !_hasAgeParameter!;
+          _isNewUser = _trainer!.metadata.creationTime ==
+                  _trainer!.metadata.lastSignInTime &&
+              !_hasAgeParameter!;
           notifyListeners();
         });
       } else {
@@ -221,10 +221,10 @@ class AuthProviderTrainer with ChangeNotifier {
           .doc(user!.email)
           .set({});
       _showToast(context, 'Registration successful', color: Colors.green);
-      
+
       notifyListeners();
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => AddTrainerDataPage()));
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => AddTrainerDataPage()));
     } on FirebaseAuthException catch (e) {
       Future.delayed(const Duration(seconds: 2)).then((value) {
         Navigator.pop(context);
@@ -244,7 +244,6 @@ class AuthProviderTrainer with ChangeNotifier {
     required double weight,
     required String gender,
     required int expInYears,
-    
     required BuildContext context,
   }) async {
     try {
@@ -262,11 +261,39 @@ class AuthProviderTrainer with ChangeNotifier {
         'weight': weight,
         'gender': gender,
         'expInYears': expInYears,
-      
       });
       notifyListeners();
     } catch (e) {
       rethrow;
     }
   }
+
+ Future<List<Map<String, dynamic>>> fetchUsersForTrainer() async {
+  String trainerEmail = FirebaseAuth.instance.currentUser!.email!;
+  try {
+    //Get current user email id
+    
+    // Reference the trainer's document in the 'trainers' collection
+    CollectionReference usersCollection = FirebaseFirestore.instance
+        .collection('trainers')
+        .doc(trainerEmail)
+        .collection('users');
+
+    // Fetch all documents (users) in the trainer's subcollection
+    QuerySnapshot querySnapshot = await usersCollection.get();
+
+    // Map the documents to a list of user data
+    List<Map<String, dynamic>> users = querySnapshot.docs.map((doc) {
+      return {
+        'id': doc.id, // Document ID (user ID)
+        ...doc.data() as Map<String, dynamic>, // User data
+      };
+    }).toList();
+
+    return users; // Return the list of users
+  } catch (e) {
+    print('Error fetching users for trainer $trainerEmail: $e');
+    return []; // Return an empty list in case of error
+  }
+}
 }

@@ -7,6 +7,7 @@ import 'package:Fitnessio/presentation/home/widgets/carousel_slider_home_widget.
 import 'package:Fitnessio/presentation/home/widgets/home_page_text_spacer_widget.dart';
 import 'package:Fitnessio/presentation/home/widgets/todays_progress_widget.dart';
 import 'package:Fitnessio/utils/managers/string_manager.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,14 +31,17 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
+          children: [
             TodaysProgressWidget(),
             HomePageTextSpacerWidget(
-              title: StringsManager.todaysAct,
+              title: AppLocalizations.of(context)!.todaysAct,
+              //StringsManager.todaysAct,
             ),
             FitnessDataWidget(),
             HomePageTextSpacerWidget(
-              title: StringsManager.benefits,
+              title:
+              AppLocalizations.of(context)!.benefits,
+              // StringsManager.benefits,
             ),
             CarouselSliderHomeWidget()
           ],

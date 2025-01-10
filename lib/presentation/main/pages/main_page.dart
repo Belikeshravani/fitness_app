@@ -33,12 +33,12 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
-  List<Widget> pages = const [
-    HomePage(),
+  List<Widget> pages = [
+    const HomePage(),
     ConsumptionPage(),
-    WorkoutPage(),
-    ProfilePage(),
-    SettingsPage(),
+    const WorkoutPage(),
+    const ProfilePage(),
+    const SettingsPage(),
     
   ];
 

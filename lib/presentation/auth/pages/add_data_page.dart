@@ -12,16 +12,17 @@ import 'package:Fitnessio/utils/managers/value_manager.dart';
 import 'package:Fitnessio/utils/widgets/lime_green_rounded_button.dart';
 
 class AddDataPage extends StatefulWidget {
-   final String trainerEmail;
-  
-  const AddDataPage({super.key, required this.trainerEmail});
+  final String trainerEmail;
+  final String trainerPassword;
+
+  const AddDataPage(
+      {super.key, required this.trainerEmail, required this.trainerPassword});
 
   @override
   State<AddDataPage> createState() => _AddDataPageState();
 }
 
 class _AddDataPageState extends State<AddDataPage> {
- 
   final TextEditingController _ageController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _surnameController = TextEditingController();
@@ -87,6 +88,7 @@ class _AddDataPageState extends State<AddDataPage> {
             .then(
               (_) => authProvider.addUserData(
                 trainerEmail: widget.trainerEmail,
+                trainerPassword: widget.trainerPassword,
                 email: email!,
                 name: _nameController.text,
                 surname: _surnameController.text,

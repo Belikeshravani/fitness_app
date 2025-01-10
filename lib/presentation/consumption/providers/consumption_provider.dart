@@ -18,6 +18,8 @@ class ConsumptionProvider with ChangeNotifier {
   List<WaterModel> get water {
     return [..._water];
   }
+  
+  
 
   Future<void> addNewMeal({
     required String title,

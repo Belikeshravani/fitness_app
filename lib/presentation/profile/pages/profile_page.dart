@@ -13,6 +13,8 @@ import 'package:Fitnessio/utils/managers/string_manager.dart';
 import 'package:Fitnessio/utils/managers/style_manager.dart';
 import 'package:Fitnessio/utils/managers/value_manager.dart';
 import 'package:Fitnessio/utils/router/router.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -75,7 +77,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                StringsManager.loggedInAs,
+                                AppLocalizations.of(context)!.loggedInAs,
+                               //StringsManager.loggedInAs,
                                 style: StyleManager.profieloggedinTextStyle,
                               ),
                               Text(
@@ -112,7 +115,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             Column(
                               children: [
                                 Text(
-                                  StringsManager.chest,
+                                  AppLocalizations.of(context)!.chest,
+                                  //StringsManager.chest,
                                   style: StyleManager
                                       .profileBodyMeasurmentsNameTextSTyle,
                                 ),
@@ -140,7 +144,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             Column(
                               children: [
                                 Text(
-                                  StringsManager.shoulders,
+                                  AppLocalizations.of(context)!.shoulders,
+                                  //StringsManager.shoulders,
                                   style: StyleManager
                                       .profileBodyMeasurmentsNameTextSTyle,
                                 ),
@@ -168,7 +173,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             Column(
                               children: [
                                 Text(
-                                  StringsManager.biceps,
+
+AppLocalizations.of(context)!.biceps,
+                                  //StringsManager.biceps,
                                   style: StyleManager
                                       .profileBodyMeasurmentsNameTextSTyle,
                                 ),
@@ -224,7 +231,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             Column(
                               children: [
                                 Text(
-                                  StringsManager.waist,
+                                  AppLocalizations.of(context)!.waist,
+                                  //StringsManager.waist,
                                   style: StyleManager
                                       .profileBodyMeasurmentsNameTextSTyle,
                                 ),
@@ -252,7 +260,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             Column(
                               children: [
                                 Text(
-                                  StringsManager.hips,
+                                  AppLocalizations.of(context)!.hips,
+                                 // StringsManager.hips,
                                   style: StyleManager
                                       .profileBodyMeasurmentsNameTextSTyle,
                                 ),
@@ -280,7 +289,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             Column(
                               children: [
                                 Text(
-                                  StringsManager.thigh,
+                                  AppLocalizations.of(context)!.thigh,
+                                 // StringsManager.thigh,
                                   style: StyleManager
                                       .profileBodyMeasurmentsNameTextSTyle,
                                 ),
@@ -308,7 +318,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             Column(
                               children: [
                                 Text(
-                                  StringsManager.calf,
+                                  AppLocalizations.of(context)!.calf,
+                                  // StringsManager.calf,
                                   style: StyleManager
                                       .profileBodyMeasurmentsNameTextSTyle,
                                 ),

@@ -4,6 +4,7 @@ import 'package:Fitnessio/utils/managers/color_manager.dart';
 import 'package:Fitnessio/utils/managers/string_manager.dart';
 import 'package:Fitnessio/utils/managers/style_manager.dart';
 import 'package:Fitnessio/utils/managers/value_manager.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NewExerciseButton extends StatelessWidget {
   const NewExerciseButton({
@@ -35,7 +36,8 @@ class NewExerciseButton extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              StringsManager.newExercise,
+              AppLocalizations.of(context)!.newExercise,
+              //StringsManager.newExercise,
               textAlign: TextAlign.center,
               style: StyleManager.newExerciseButtonTextSTyle,
             ),

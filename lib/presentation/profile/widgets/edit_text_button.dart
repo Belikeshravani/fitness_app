@@ -4,6 +4,7 @@ import 'package:Fitnessio/utils/managers/color_manager.dart';
 import 'package:Fitnessio/utils/managers/string_manager.dart';
 import 'package:Fitnessio/utils/managers/style_manager.dart';
 import 'package:Fitnessio/utils/managers/value_manager.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditTextButton extends StatelessWidget {
   const EditTextButton({
@@ -28,7 +29,8 @@ class EditTextButton extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                StringsManager.edit,
+AppLocalizations.of(context)!.edit,
+                //StringsManager.edit,
                 textAlign: TextAlign.right,
                 style: StyleManager.editTextButtonTextStyle,
               ),
