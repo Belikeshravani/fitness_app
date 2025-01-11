@@ -15,6 +15,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider with ChangeNotifier {
   User? _user;
@@ -84,7 +85,7 @@ class AuthProvider with ChangeNotifier {
     _trainerEmail = trainerEmail;
     notifyListeners();
   }
-
+  
   String? get trainerEmail => _trainerEmail;
 
   Future<void> register({

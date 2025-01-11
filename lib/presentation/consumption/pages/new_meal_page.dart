@@ -95,7 +95,7 @@ class _NewMealPageState extends State<NewMealPage> {
       try {
         final model = GenerativeModel(
           model: 'gemini-1.5-flash',
-          apiKey: 'AIzaSyAXczCcaNC6DFktLJz8rZ-jG0wwEdd6ZX8', // Use env variable
+          apiKey: 'AIzaSyD_h7CyqurPpGXdAGwTDGXPKPQLi_1jrTo', // Use env variable
         );
 
         final prompt =

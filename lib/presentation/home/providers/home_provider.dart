@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeProvider with ChangeNotifier {
   final Map<String, dynamic> _userData = {};
@@ -12,57 +13,53 @@ class HomeProvider with ChangeNotifier {
   // HomeProvider() {
   //   fetchUserData();
   // }
+ Future<String?> getTrainerEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('trainerEmail');
+  }
+ 
 
   Future<Map<String, dynamic>> fetchUserData() async {
     try {
       User? user = FirebaseAuth.instance.currentUser;
 
-      if (user != null) {
-        // Fetch the user document
+       // Get the trainer email from Shared Preferences
+      String? trainerEmail = await getTrainerEmail();
+
+     if (user != null && trainerEmail != null) {
+        // Fetch the user data using the trainer's email
         DocumentSnapshot userDataSnapshot = await FirebaseFirestore.instance
-            
-            .collection('users')
-            .doc(user.uid)
-            .get();
-
-        // Extract the trainerEmail from the user's data
-        String trainerEmail = userDataSnapshot.get('trainerEmail');
-        print("trainerEmail in home Provider : $trainerEmail");
-        // Fetch data from the trainer's collection
-        DocumentSnapshot trainerUserDataSnapshot = await FirebaseFirestore
-            .instance
             .collection('trainers')
-            .doc(trainerEmail)
+            .doc(trainerEmail)  // Use dynamic trainer email
             .collection('users')
             .doc(user.uid)
             .get();
-
-        // Populate the _userData map
-        _userData['name'] = trainerUserDataSnapshot.get('name');
-        _userData['surname'] = trainerUserDataSnapshot.get('surname');
-        _userData['age'] = trainerUserDataSnapshot.get('age');
-        _userData['height'] = trainerUserDataSnapshot.get('height');
-        _userData['weight'] = trainerUserDataSnapshot.get('weight');
-        _userData['gender'] = trainerUserDataSnapshot.get('gender');
-        _userData['activity'] = trainerUserDataSnapshot.get('activity');
-        _userData['bmr'] = trainerUserDataSnapshot.get('bmr');
-        _userData['goal'] = trainerUserDataSnapshot.get('goal');
-        _userData['bmi'] = trainerUserDataSnapshot.get('bmi');
-        _userData['email'] = trainerUserDataSnapshot.get('email');
-        _userData['chest'] = trainerUserDataSnapshot.get('chest');
-        _userData['shoulders'] = trainerUserDataSnapshot.get('shoulders');
-        _userData['biceps'] = trainerUserDataSnapshot.get('biceps');
-        _userData['foreArm'] = trainerUserDataSnapshot.get('foreArm');
-        _userData['waist'] = trainerUserDataSnapshot.get('waist');
-        _userData['hips'] = trainerUserDataSnapshot.get('hips');
-        _userData['thigh'] = trainerUserDataSnapshot.get('thigh');
-        _userData['calf'] = trainerUserDataSnapshot.get('calf');
+        _userData['name'] = userDataSnapshot.get('name');
+        _userData['surname'] = userDataSnapshot.get('surname');
+        _userData['age'] = userDataSnapshot.get('age');
+        _userData['height'] = userDataSnapshot.get('height');
+        _userData['weight'] = userDataSnapshot.get('weight');
+        _userData['gender'] = userDataSnapshot.get('gender');
+        _userData['activity'] = userDataSnapshot.get('activity');
+        _userData['bmr'] = userDataSnapshot.get('bmr');
+        _userData['goal'] = userDataSnapshot.get('goal');
+        _userData['bmi'] = userDataSnapshot.get('bmi');
+        _userData['email'] = userDataSnapshot.get('email');
+        _userData['chest'] = userDataSnapshot.get('chest');
+        _userData['shoulders'] = userDataSnapshot.get('shoulders');
+        _userData['biceps'] = userDataSnapshot.get('biceps');
+        _userData['foreArm'] = userDataSnapshot.get('foreArm');
+        _userData['waist'] = userDataSnapshot.get('waist');
+        _userData['hips'] = userDataSnapshot.get('hips');
+        _userData['thigh'] = userDataSnapshot.get('thigh');
+        _userData['calf'] = userDataSnapshot.get('calf');
 
         notifyListeners();
       }
     } catch (e) {
       rethrow;
     }
+    print(_userData);
     return _userData;
   }
 

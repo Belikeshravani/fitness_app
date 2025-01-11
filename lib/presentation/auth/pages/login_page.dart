@@ -10,6 +10,7 @@ import 'package:Fitnessio/utils/managers/style_manager.dart';
 import 'package:Fitnessio/utils/managers/value_manager.dart';
 import 'package:Fitnessio/utils/router/router.dart';
 import 'package:Fitnessio/utils/widgets/lime_green_rounded_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -40,6 +41,10 @@ class _LoginPageState extends State<LoginPage> {
         trainerEmail: _trainerEmailController.text, // Pass trainer email
         context: context,
       );
+
+        // Save the trainer email in shared preferences
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('trainerEmail', _trainerEmailController.text);
     } catch (e) {
       rethrow;
     }
@@ -60,22 +65,29 @@ class _LoginPageState extends State<LoginPage> {
                   height: SizeManager.s250.h,
                   child: Image.asset(ImageManager.logo),
                 ),
-                TextField(
+                TextField(style: TextStyle(color: Colors.white),
+                  
                   controller: _emailController,
                   decoration: InputDecoration(
+                    labelStyle: TextStyle(color: Colors.white),
+                  
                     labelText: "Email",
                   ),
                 ),
                 TextField(
+                  style: TextStyle(color: Colors.white),
                   controller: _passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
+                    labelStyle: TextStyle(color: Colors.white),
                     labelText: "Password",
                   ),
                 ),
                 TextField(
+                  style: TextStyle(color: Colors.white),
                   controller: _trainerEmailController, // New Trainer Email Field
                   decoration: InputDecoration(
+                    labelStyle: TextStyle(color: Colors.white),
                     labelText: "Trainer Email",
                   ),
                 ),
