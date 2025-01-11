@@ -6,7 +6,6 @@ import 'package:Fitnessio/presentation/home/widgets/fitness_data_widget.dart';
 import 'package:Fitnessio/presentation/home/widgets/carousel_slider_home_widget.dart';
 import 'package:Fitnessio/presentation/home/widgets/home_page_text_spacer_widget.dart';
 import 'package:Fitnessio/presentation/home/widgets/todays_progress_widget.dart';
-import 'package:Fitnessio/utils/managers/string_manager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {

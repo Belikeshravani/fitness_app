@@ -256,14 +256,12 @@ class AuthProvider with ChangeNotifier {
         'calf': 0.0,
       });
  // Sign the trainer back in
-      if (trainerEmail != null ) {
-        await FirebaseAuth.instance.signOut();
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: trainerEmail,
-          password: trainerPassword,
-        );
-      }
-      _showToast(context, 'User data added successfully', color: Colors.green);
+      await FirebaseAuth.instance.signOut();
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: trainerEmail,
+        password: trainerPassword,
+      );
+          _showToast(context, 'User data added successfully', color: Colors.green);
       notifyListeners();
     } catch (e) {
       _showToast(context, 'Unexpected error: $e', color: Colors.red);

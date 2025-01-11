@@ -1,7 +1,6 @@
 //import 'package:Fitnessio/presentation/auth/providers/auth_provider.dart';
 import 'package:Fitnessio/utils/widgets/text_field_underlined.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -16,14 +15,15 @@ import 'package:Fitnessio/utils/managers/value_manager.dart';
 import 'package:Fitnessio/utils/widgets/lime_green_rounded_button.dart';
 import 'package:Fitnessio/utils/widgets/small_text_field_widget.dart';
 
-class NewExercisePage extends StatefulWidget {
-  const NewExercisePage({super.key});
+class TrainerNewExercisePage extends StatefulWidget {
+  final Map<String, dynamic> user;
+  const TrainerNewExercisePage({super.key,required this.user});
 
   @override
-  State<NewExercisePage> createState() => _NewExercisePageState();
+  State<TrainerNewExercisePage> createState() => _TrainerNewExercisePageState();
 }
 
-class _NewExercisePageState extends State<NewExercisePage> {
+class _TrainerNewExercisePageState extends State<TrainerNewExercisePage> {
   final TextEditingController _setNumberController = TextEditingController();
   final TextEditingController _repNumberController = TextEditingController();
   final TextEditingController _mealDateController = TextEditingController();
@@ -62,7 +62,7 @@ class _NewExercisePageState extends State<NewExercisePage> {
 
   @override
   Widget build(BuildContext context) {
-    User? user = FirebaseAuth.instance.currentUser;
+   
     final deviceWidth = MediaQuery.of(context).size.width;
     final deviceHeight = MediaQuery.of(context).size.height;
     final workoutProvider =
@@ -174,8 +174,8 @@ class _NewExercisePageState extends State<NewExercisePage> {
               LimeGreenRoundedButtonWidget(
                 onTap: () {
                   try {
-                    workoutProvider.addNewWorkout(
-                      user: user,
+                    workoutProvider.addNewWorkoutTrainer(
+                      userId: widget.user['id'],
                       name: _valueExercise!,
                       repNumber: int.parse(_repNumberController.text),
                       setNumber: int.parse(_setNumberController.text),

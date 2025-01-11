@@ -1,4 +1,3 @@
-import 'package:Fitnessio/presentation/auth/pages/login_or_register_page.dart';
 import 'package:Fitnessio/presentation/auth/pages/login_page.dart';
 import 'package:Fitnessio/trainer/auth/pages/login_or_register_page.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,7 +37,7 @@ class _MainPageState extends State<MainPage> {
   List<Widget> pages = [
     const HomePage(),
     ConsumptionPage(),
-    const WorkoutPage(),
+     WorkoutPage(),
     const ProfilePage(),
     const SettingsPage(),
     
@@ -65,6 +66,7 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
+    User? user = FirebaseAuth.instance.currentUser;
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final consumptionProvider =
           Provider.of<ConsumptionProvider>(context, listen: false);
@@ -72,7 +74,7 @@ class _MainPageState extends State<MainPage> {
           Provider.of<WorkoutProvider>(context, listen: false);
       await consumptionProvider.fetchAndSetMeals();
       await consumptionProvider.fetchAndSetWater();
-      await workoutsProvider.fetchAndSetWorkouts();
+      await workoutsProvider.fetchAndSetWorkouts(user);
       await workoutsProvider.getProgressPercent();
       final workouts = workoutsProvider.workouts;
       final meals = consumptionProvider.meals;
@@ -104,7 +106,7 @@ class _MainPageState extends State<MainPage> {
             now.month > lastWorkoutDateTime.month ||
             now.day > lastWorkoutDateTime.day) {
           await workoutsProvider.clearWorkoutsIfDayChanges(lastWorkoutDateTime);
-          await workoutsProvider.fetchAndSetWorkouts();
+          await workoutsProvider.fetchAndSetWorkouts(user);
         }
       }
     });

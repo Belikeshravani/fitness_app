@@ -1,4 +1,3 @@
-import 'package:Fitnessio/presentation/main/pages/main_page.dart';
 import 'package:Fitnessio/trainer/auth/pages/add_trainer_data.dart';
 import 'package:Fitnessio/trainer/presentation/trainer_main_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

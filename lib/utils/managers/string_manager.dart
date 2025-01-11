@@ -1,5 +1,3 @@
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class StringsManager {
   static const String noRouteFound = 'No Route Found';
   static const String splashText1 = 'Plan your workouts\nwith ease';

@@ -2,7 +2,6 @@ import 'package:Fitnessio/roles_page.dart';
 import 'package:Fitnessio/trainer/auth/provider/auth_provider_trainer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:Fitnessio/presentation/auth/pages/add_data_page.dart';
 //import 'package:Fitnessio/presentation/auth/providers/auth_provider.dart';
 import 'package:Fitnessio/presentation/main/pages/main_page.dart';
 

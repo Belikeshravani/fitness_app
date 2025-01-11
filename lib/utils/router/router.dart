@@ -1,13 +1,11 @@
 import 'package:Fitnessio/presentation/auth/pages/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:Fitnessio/presentation/auth/pages/add_data_page.dart';
 import 'package:Fitnessio/presentation/auth/pages/auth_page.dart';
 import 'package:Fitnessio/presentation/auth/pages/forgot_password_page.dart';
 import 'package:Fitnessio/presentation/boarding/pages/boarding_page.dart';
 import 'package:Fitnessio/presentation/consumption/pages/drink_page.dart';
 import 'package:Fitnessio/presentation/consumption/pages/new_meal_page.dart';
 import 'package:Fitnessio/presentation/main/pages/main_page.dart';
-import 'package:Fitnessio/presentation/auth/pages/login_or_register_page.dart';
 import 'package:Fitnessio/presentation/notifications/pages/notifications_page.dart';
 import 'package:Fitnessio/presentation/profile/pages/change_measurements_page.dart';
 import 'package:Fitnessio/presentation/settings/pages/change_email_page.dart';
@@ -56,8 +54,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ChangeEmailPage());
       case Routes.deleteAccRoute:
         return MaterialPageRoute(builder: (_) => const DeleteAccountPage());
-      case Routes.newMealRoute:
-        return MaterialPageRoute(builder: (_) => const NewMealPage());
+      // case Routes.newMealRoute:
+      //   return MaterialPageRoute(builder: (_) => const NewMealPage());
       // case Routes.addDataRoute:
       //   return MaterialPageRoute(builder: (_) => const AddDataPage());
       case Routes.addWaterRoute:

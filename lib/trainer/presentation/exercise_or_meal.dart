@@ -1,11 +1,12 @@
-import 'package:Fitnessio/presentation/consumption/pages/consumption_page.dart';
+
+import 'package:Fitnessio/trainer/presentation/consuption_trainer_page.dart';
 import 'package:Fitnessio/trainer/presentation/exercise_page.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseOrMeal extends StatelessWidget {
   final Map<String, dynamic> user;
 
-  ExerciseOrMeal({super.key, required this.user});
+  const ExerciseOrMeal({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +64,7 @@ class ExerciseOrMeal extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ConsumptionPage(),
+                    builder: (context) => ConsuptionTrainerPage(user: user,),
                   ),
                 );
               },

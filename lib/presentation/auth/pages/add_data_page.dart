@@ -5,7 +5,6 @@ import 'package:Fitnessio/presentation/auth/providers/auth_provider.dart';
 import 'package:Fitnessio/presentation/auth/widgets/add_data_widgets.dart';
 import 'package:Fitnessio/presentation/home/providers/home_provider.dart';
 import 'package:Fitnessio/utils/managers/style_manager.dart';
-import 'package:Fitnessio/utils/router/router.dart';
 import 'package:Fitnessio/utils/managers/color_manager.dart';
 import 'package:Fitnessio/utils/managers/string_manager.dart';
 import 'package:Fitnessio/utils/managers/value_manager.dart';

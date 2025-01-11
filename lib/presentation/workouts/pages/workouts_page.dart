@@ -1,16 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:provider/provider.dart';
 import 'package:Fitnessio/presentation/workouts/providers/workout_provider.dart';
-import 'package:Fitnessio/presentation/workouts/widgets/new_exercise_button.dart';
 import 'package:Fitnessio/presentation/workouts/widgets/exercise_widget.dart';
 import 'package:Fitnessio/utils/managers/color_manager.dart';
 import 'package:Fitnessio/utils/managers/value_manager.dart';
-import 'package:Fitnessio/utils/router/router.dart';
 
 class WorkoutPage extends StatefulWidget {
-  const WorkoutPage({super.key});
+  User? user = FirebaseAuth.instance.currentUser;
+   WorkoutPage({super.key});
 
   @override
   State<WorkoutPage> createState() => _WorkoutPageState();
@@ -20,7 +20,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
   Future<void> _handleRefresh() async {
     setState(() {
       Provider.of<WorkoutProvider>(context, listen: false)
-          .fetchAndSetWorkouts();
+          .fetchAndSetWorkouts(widget.user);
     });
     return await Future.delayed(
       const Duration(
@@ -40,7 +40,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
           backgroundColor: ColorManager.white2,
           onRefresh: _handleRefresh,
           child: FutureBuilder<void>(
-            future: workoutsProvider.fetchAndSetWorkouts(),
+            future: workoutsProvider.fetchAndSetWorkouts(widget.user),
             builder: (context, snapshot) {
               return Stack(
                 children: [
@@ -48,16 +48,16 @@ class _WorkoutPageState extends State<WorkoutPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: NewExerciseButton(
-                          onTap: () {
-                            Navigator.of(context).pushNamed(
-                              Routes.addNewExerciseRoute,
-                            );
-                          },
-                        ),
-                      ),
+                      // Align(
+                      //   alignment: Alignment.topCenter,
+                      //   child: NewExerciseButton(
+                      //     onTap: () {
+                      //       Navigator.of(context).pushNamed(
+                      //         Routes.addNewExerciseRoute,
+                      //       );
+                      //     },
+                      //   ),
+                      // ),
                       Expanded(
                         child: ListView.builder(
                           itemCount: workoutsProvider.workouts.length,

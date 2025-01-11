@@ -1,5 +1,4 @@
 import 'package:Fitnessio/presentation/auth/pages/register_page.dart';
-import 'package:Fitnessio/presentation/main/widgets/appbar_home.dart';
 import 'package:Fitnessio/trainer/auth/provider/auth_provider_trainer.dart';
 import 'package:Fitnessio/trainer/home/provider/trainer_home_provider.dart';
 import 'package:Fitnessio/trainer/home/widgets/home_page_appbar.dart';

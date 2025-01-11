@@ -1,10 +1,8 @@
 import 'package:Fitnessio/presentation/auth/providers/auth_provider.dart' as fitnessio;
-import 'package:firebase_auth_platform_interface/src/auth_provider.dart' as firebase;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:Fitnessio/presentation/auth/providers/auth_provider.dart';
 import 'package:Fitnessio/utils/managers/asset_manager.dart';
 import 'package:Fitnessio/utils/managers/color_manager.dart';
 import 'package:Fitnessio/utils/managers/string_manager.dart';

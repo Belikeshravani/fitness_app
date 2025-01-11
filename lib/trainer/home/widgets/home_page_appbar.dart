@@ -2,7 +2,6 @@ import 'package:Fitnessio/presentation/settings/providers/settings_provider.dart
 import 'package:Fitnessio/roles_page.dart';
 import 'package:Fitnessio/trainer/auth/provider/auth_provider_trainer.dart';
 import 'package:Fitnessio/utils/managers/color_manager.dart';
-import 'package:Fitnessio/utils/managers/string_manager.dart';
 import 'package:Fitnessio/utils/managers/style_manager.dart';
 import 'package:Fitnessio/utils/managers/value_manager.dart';
 import 'package:flutter/material.dart';
