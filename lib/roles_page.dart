@@ -1,6 +1,7 @@
 import 'package:Fitnessio/presentation/auth/pages/login_page.dart';
 import 'package:Fitnessio/trainer/auth/pages/login_or_register_page.dart';
 import 'package:flutter/material.dart';
+import 'package:Fitnessio/utils/managers/color_manager.dart';
 
 class RoleSelectionPage extends StatelessWidget {
   const RoleSelectionPage({super.key});
@@ -8,17 +9,15 @@ class RoleSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorManager.darkGrey,
       appBar: AppBar(
-        title: Text('Choose Your Role'),
+        backgroundColor: Colors.black,
+        title: Text('Choose Your Role', style: TextStyle(color: Colors.white)),
         centerTitle: true,
       ),
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.blue.shade300, Colors.blue.shade900],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
+         // color: Colors.black,
         ),
         child: Center(
           child: Column(
@@ -46,7 +45,7 @@ class RoleSelectionPage extends StatelessWidget {
                   margin: EdgeInsets.symmetric(vertical: 10),
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 40),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.blue,
                     borderRadius: BorderRadius.circular(30),
                     boxShadow: [
                       BoxShadow(
@@ -60,7 +59,7 @@ class RoleSelectionPage extends StatelessWidget {
                     'Trainer',
                     style: TextStyle(
                       fontSize: 18,
-                      color: Colors.blue.shade900,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -75,7 +74,7 @@ class RoleSelectionPage extends StatelessWidget {
                   margin: EdgeInsets.symmetric(vertical: 10),
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 40),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.green,
                     borderRadius: BorderRadius.circular(30),
                     boxShadow: [
                       BoxShadow(
@@ -89,7 +88,7 @@ class RoleSelectionPage extends StatelessWidget {
                     'Trainee',
                     style: TextStyle(
                       fontSize: 18,
-                      color: Colors.blue.shade900,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

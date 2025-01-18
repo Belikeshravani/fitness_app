@@ -58,7 +58,7 @@ class AuthProvider with ChangeNotifier {
   // Validate trainerEmail before making Firestore calls
   void _validateTrainerEmail(BuildContext context) {
     if (_trainerEmail == null || _trainerEmail!.isEmpty) {
-      _showToast(context, 'Trainer email not set.', color: Colors.red);
+     // _showToast(context, 'Trainer email not set.', color: Colors.red);
       return;
     }
   }

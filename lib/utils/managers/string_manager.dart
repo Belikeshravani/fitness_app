@@ -72,7 +72,7 @@ class StringsManager {
   static const String meditation = 'MEDITATION';
   static const String focus = 'FOCUS';
   static const String mealNameHint = 'Name';
-  static const String mealAmountHint = 'Amount';
+  static const String mealAmountHint = 'Amount (in grams)';
   static const String mealCaloriesHint = 'kCal';
   static const String add = 'ADD';
   static const String mealProteinsHint = 'Proteins';

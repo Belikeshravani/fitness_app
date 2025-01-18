@@ -22,10 +22,12 @@ class ExerciseOrMeal extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Row(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Exercise Container
           Expanded(
+            flex: 2,
             child: GestureDetector(
               onTap: () {
                 // Navigate to Exercise Page
@@ -37,7 +39,7 @@ class ExerciseOrMeal extends StatelessWidget {
                 );
               },
               child: Container(
-                margin: const EdgeInsets.all(10),
+                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
                 decoration: BoxDecoration(
                   color: Colors.blue,
                   borderRadius: BorderRadius.circular(15),
@@ -58,6 +60,7 @@ class ExerciseOrMeal extends StatelessWidget {
 
           // Meal Container
           Expanded(
+            flex: 2,
             child: GestureDetector(
               onTap: () {
                 // Navigate to Meal Page
@@ -69,7 +72,8 @@ class ExerciseOrMeal extends StatelessWidget {
                 );
               },
               child: Container(
-                margin: const EdgeInsets.all(10),
+                //height: 100,
+                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
                 decoration: BoxDecoration(
                   color: Colors.green,
                   borderRadius: BorderRadius.circular(15),

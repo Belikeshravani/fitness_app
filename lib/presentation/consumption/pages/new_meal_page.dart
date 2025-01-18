@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:Fitnessio/utils/managers/font_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -178,11 +179,15 @@ class _NewMealPageState extends State<NewMealPage> {
                   top: PaddingManager.p12,
                 ),
                 child: DropdownButtonFormField<String>(
+                  dropdownColor: ColorManager.darkGrey,
                   value: _selectedMealType,
                   items: _mealTypes.map((String mealType) {
                     return DropdownMenuItem<String>(
                       value: mealType,
-                      child: Text(mealType),
+                      child: Text(mealType,style: TextStyle(
+                         color: ColorManager.limerGreen2,
+                        fontWeight: FontWightManager.bold,
+                      ),),
                     );
                   }).toList(),
                   onChanged: (newValue) {
@@ -192,6 +197,9 @@ class _NewMealPageState extends State<NewMealPage> {
                   },
                   decoration: InputDecoration(
                     labelText: "Select Meal Type",
+                    labelStyle: TextStyle(
+                      color: ColorManager.white2,
+                      ),
                     border: UnderlineInputBorder(),
                   ),
                 ),
